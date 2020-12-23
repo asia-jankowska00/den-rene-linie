@@ -1,11 +1,37 @@
 {
-  "name": "@den-rene-linie/server",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "server",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "strapi": "3.3.3",
+    "strapi-admin": "3.3.3",
+    "strapi-utils": "3.3.3",
+    "strapi-plugin-content-type-builder": "3.3.3",
+    "strapi-plugin-content-manager": "3.3.3",
+    "strapi-plugin-users-permissions": "3.3.3",
+    "strapi-plugin-email": "3.3.3",
+    "strapi-plugin-upload": "3.3.3",
+    "strapi-connector-mongoose": "3.3.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "6cc8086b-8751-4acc-8b0f-13d8e818bfff"
+  },
+  "engines": {
+    "node": ">=10.16.0 <=14.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
 }
