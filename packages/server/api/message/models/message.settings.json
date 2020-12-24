@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messages",
+  "info": {
+    "name": "Message"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "sender": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "receiver": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "created": {
+      "type": "datetime"
+    },
+    "text": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "stopwatches",
+  "info": {
+    "name": "Stopwatch"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "booking": {
+      "model": "bookings"
+    }
+  }
+}

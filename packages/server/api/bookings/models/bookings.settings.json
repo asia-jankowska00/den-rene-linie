@@ -1,0 +1,69 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "name": "Booking",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "client": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "bookings"
+    },
+    "startDate": {
+      "type": "datetime"
+    },
+    "endDate": {
+      "type": "datetime"
+    },
+    "clientNote": {
+      "type": "text"
+    },
+    "employerNote": {
+      "type": "text"
+    },
+    "service": {
+      "model": "services"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "dateApproved",
+        "dateDeclined",
+        "quoteAwaiting",
+        "quoteApproved",
+        "quoteDeclined",
+        "paid",
+        "employeeAssigned",
+        "inProgress",
+        "finished"
+      ]
+    },
+    "assignedEmployee": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "address": {
+      "type": "string"
+    },
+    "size": {
+      "type": "biginteger"
+    },
+    "meeting": {
+      "type": "boolean"
+    },
+    "termsOfService": {
+      "type": "boolean"
+    },
+    "price": {
+      "type": "float"
+    }
+  }
+}

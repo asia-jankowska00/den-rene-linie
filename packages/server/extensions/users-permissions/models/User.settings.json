@@ -61,6 +61,27 @@
     },
     "phone": {
       "type": "string"
+    },
+    "avatar": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "notifEmail": {
+      "type": "boolean"
+    },
+    "notifPush": {
+      "type": "boolean"
+    },
+    "bookings": {
+      "via": "client",
+      "collection": "bookings"
     }
   }
 }

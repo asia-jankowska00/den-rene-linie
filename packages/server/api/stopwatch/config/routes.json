@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/stopwatches",
+      "handler": "stopwatch.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stopwatches/count",
+      "handler": "stopwatch.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stopwatches/:id",
+      "handler": "stopwatch.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/stopwatches",
+      "handler": "stopwatch.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/stopwatches/:id",
+      "handler": "stopwatch.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/stopwatches/:id",
+      "handler": "stopwatch.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
