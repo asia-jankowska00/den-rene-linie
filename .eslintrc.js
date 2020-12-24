@@ -1,3 +1,3 @@
 module.exports = {
-  "vue/html-closing-bracket-newline": [2, { multiline: "never" }]
+  extends: ['eslint:recommended', 'plugin:vue/recommended', 'prettier/vue', 'prettier'],
 }
