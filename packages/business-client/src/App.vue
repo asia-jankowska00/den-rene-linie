@@ -1,10 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>
+      |
       <router-link to="/about">About</router-link>
     </div>
-    <b-button type="is-primary">Buefy</b-button>
+    <b-button type="is-primary">
+      Buefy
+      <b-icon pack="fas" icon="user" type="is-success"></b-icon>
+    </b-button>
     <router-view />
   </div>
 </template>
