@@ -1,15 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div>
+    <b-image
+      src="https://expertphotography.com/wp-content/uploads/2019/11/Cute-Kitten-Picture-get-your-cat-to-look-at-the-camera.jpg"
+    ></b-image>
+    <div class="is-flex is-flex-direction-column">
+      <b-button tag="router-link" to="/login">Log in</b-button>
+      <b-button tag="router-link" to="/register">Sign-up</b-button>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'Home',
-  components: {
-  }
+  components: {}
 }
 </script>
