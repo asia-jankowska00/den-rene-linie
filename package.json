@@ -10,9 +10,9 @@
     "prettier-eslint": "^12.0.0"
   },
   "scripts": {
-    "start-bc": "lerna exec --scope @den-rene-linie/business-client npm run serve",
-    "start-e": "lerna exec --scope @den-rene-linie/employer npm run serve",
-    "start-em": "lerna exec --scope @den-rene-linie/employee npm run serve",
+    "start-bcl": "lerna exec --scope @den-rene-linie/business-client npm run serve",
+    "start-emr": "lerna exec --scope @den-rene-linie/employer npm run serve",
+    "start-eme": "lerna exec --scope @den-rene-linie/employee npm run serve",
     "start-server": "lerna exec --scope  @den-rene-linie/server npm run develop"
   }
 }
