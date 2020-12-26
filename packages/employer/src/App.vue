@@ -1,37 +1,43 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link>
+    <div class="wrapper">
+      <router-view></router-view>
     </div>
-    <b-button type="is-primary">
-      Buefy
-      <b-icon pack="fas" icon="user" type="is-success"></b-icon>
-    </b-button>
-    <router-view />
   </div>
 </template>
 
-<style>
+<script>
+
+export default {
+  name: 'App',
+  components: { }
+}
+</script>
+
+<style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-size: 16px;
+  background: #f2f2f2;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #dddddd;
+  padding: 20px;
+
+  @media screen and (max-width: 500px) {
+    padding: 0;
+  }
 }
 
-#nav {
-  padding: 30px;
+.wrapper {
+  background: #ffffff;
+  width: 500px;
+  max-width: 500px;
+  min-height: 100%;
+  max-height: 100%;
+  position: relative;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
