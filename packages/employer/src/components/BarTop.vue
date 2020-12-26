@@ -1,31 +1,22 @@
 <template>
-  <div class="tabs is-toggle is-fullwidth">
-    <ul>
-      <router-link tag="li" to="/dashboard/profile" active-class="is-active" exact>
-        <a class="is-flex-direction-column">
-          <b-icon pack="fas" icon="user-cog" />
-          <span>Profile</span>
-        </a>
-      </router-link>
-      <li>
-        <a class="logo">
-          <span>logo</span>
-        </a>
-      </li>
-      <router-link tag="li" to="/dashboard/chat" active-class="is-active" exact>
-        <a class="is-flex-direction-column">
-          <b-icon pack="fas" icon="comments" />
-          <span>Chat</span>
-        </a>
-      </router-link>
-    </ul>
-  </div>
+  <b-navbar class="has-background-light">
+    <template slot="brand">
+      <b-navbar-item tag="router-link" to="/dashboard">LOGO</b-navbar-item>
+    </template>
+
+    <template slot="end">
+      <b-navbar-item tag="router-link" to="/dashboard/notifications">
+        <b-icon icon="bell" size="is-large"></b-icon>
+      </b-navbar-item>
+      <b-navbar-item tag="router-link" to="/dashboard/profile">
+        <b-icon icon="user" size="is-large"></b-icon>
+      </b-navbar-item>
+    </template>
+  </b-navbar>
 </template>
 
 <script>
 export default { name: 'BarTop' }
 </script>
 
-<style>
-
-</style>
+<style></style>
