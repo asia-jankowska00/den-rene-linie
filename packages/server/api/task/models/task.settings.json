@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "name": "task"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "isCompleted": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "text"
+    },
+    "services": {
+      "via": "task_list",
+      "collection": "service"
+    }
+  }
+}

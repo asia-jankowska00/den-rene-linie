@@ -18,11 +18,12 @@
       "plugin": "users-permissions",
       "model": "user"
     },
+    "text": {
+      "type": "richtext",
+      "required": true
+    },
     "created": {
       "type": "datetime"
-    },
-    "text": {
-      "type": "richtext"
     }
   }
 }

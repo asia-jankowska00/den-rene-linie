@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "guides",
+  "collectionName": "services",
   "info": {
-    "name": "guide"
+    "name": "service"
   },
   "options": {
     "increments": true,
@@ -14,9 +14,10 @@
       "type": "string",
       "required": true
     },
-    "text": {
-      "type": "richtext",
-      "required": true
+    "task_list": {
+      "collection": "task",
+      "via": "services",
+      "dominant": true
     },
     "image": {
       "collection": "file",

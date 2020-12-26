@@ -1,0 +1,76 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookings",
+  "info": {
+    "name": "booking",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "client": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "startDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "endDate": {
+      "type": "datetime",
+      "required": true
+    },
+    "clientNote": {
+      "type": "richtext"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "employerNote": {
+      "type": "richtext"
+    },
+    "service": {
+      "model": "service"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "dateApproved",
+        "dateDeclined",
+        "quoteAwaiting",
+        "quoteApproved",
+        "quoteDeclined",
+        "paid",
+        "employeeAssigned",
+        "inProgress",
+        "finished"
+      ]
+    },
+    "assignedEmployee": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "address": {
+      "type": "string"
+    },
+    "size": {
+      "type": "decimal"
+    },
+    "meeting": {
+      "type": "boolean"
+    },
+    "termsOfServices": {
+      "type": "boolean",
+      "required": true
+    },
+    "customService": {
+      "type": "component",
+      "repeatable": true,
+      "component": "custom-service.custom-service"
+    }
+  }
+}

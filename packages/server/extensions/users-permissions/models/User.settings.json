@@ -59,8 +59,13 @@
       "plugin": "users-permissions",
       "configurable": false
     },
-    "phone": {
-      "type": "string"
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
     },
     "avatar": {
       "model": "file",
@@ -79,9 +84,8 @@
     "notifPush": {
       "type": "boolean"
     },
-    "bookings": {
-      "via": "client",
-      "collection": "bookings"
+    "phone": {
+      "type": "string"
     }
   }
 }
