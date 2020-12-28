@@ -23,18 +23,39 @@
             <b-menu-item
               tag="router-link"
               active-class="is-active"
-              to="/dashboard/employees"
+              to="/dashboard/employees/list"
               icon="user"
-              label="All"
+              label="Employee list"
+            ></b-menu-item>
+            <b-menu-item
+              tag="router-link"
+              active-class="is-active"
+              to="/dashboard/employees/add"
+              icon="user"
+              label="Add account"
+            ></b-menu-item>
+            <b-menu-item
+              tag="router-link"
+              active-class="is-active"
+              to="/dashboard/employees/guides"
+              icon="user"
+              label="Guides"
+            ></b-menu-item>
+            <b-menu-item
+              tag="router-link"
+              active-class="is-active"
+              to="/dashboard/employees/timesheets"
+              icon="user"
+              label="Timesheets"
             ></b-menu-item>
           </b-menu-item>
           <b-menu-item icon="user" label="Clients">
             <b-menu-item
               tag="router-link"
               active-class="is-active"
-              to="/dashboard/clients"
+              to="/dashboard/clients/list"
               icon="user"
-              label="Clients"
+              label="Client list"
             ></b-menu-item>
           </b-menu-item>
           <b-menu-item icon="comments" label="Chat">

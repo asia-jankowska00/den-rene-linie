@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import RouterView from '../views/RouterView.vue'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
-import Profile from '../views/Profile.vue'
-import Employees from '../views/Employees.vue'
-import Clients from '../views/Clients.vue'
-import Chat from '../views/Chat.vue'
-import ChatEmployees from '../views/ChatEmployees.vue'
-import ChatClients from '../views/ChatClients.vue'
+import EmployeeList from '../views/Employees/EmployeeList.vue'
+import AddAccount from '../views/Employees/AddAccount.vue'
+import Guides from '../views/Employees/Guides.vue'
+import Timesheets from '../views/Employees/Timesheets.vue'
+import Pending from '../views/Bookings/Pending.vue'
+import Approved from '../views/Bookings/Approved.vue'
+import ClientList from '../views/Clients/ClientList.vue'
+import ChatEmployees from '../views/Chat/ChatEmployees.vue'
+import ChatClients from '../views/Chat/ChatClients.vue'
 import Services from '../views/Services.vue'
-import Bookings from '../views/Bookings.vue'
+import Profile from '../views/Profile.vue'
 import Notifications from '../views/Notifications.vue'
 
 Vue.use(VueRouter)
@@ -27,24 +31,70 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: 'profile',
-        name: 'Profile',
-        component: Profile
+        path: 'bookings',
+        name: 'Bookings',
+        component: RouterView,
+        children: [
+          {
+            path: 'pending',
+            name: 'Pending',
+            component: Pending
+          },
+          {
+            path: 'approved',
+            name: 'Approved',
+            component: Approved
+          }
+        ]
+      },
+      {
+        path: 'services',
+        name: 'Services',
+        component: Services
       },
       {
         path: 'employees',
         name: 'Employees',
-        component: Employees
+        component: RouterView,
+        children: [
+          {
+            path: 'list',
+            name: 'EmployeesList',
+            component: EmployeeList
+          },
+          {
+            path: 'add',
+            name: 'AddAccount',
+            component: AddAccount
+          },
+          {
+            path: 'guides',
+            name: 'Guides',
+            component: Guides
+          },
+          {
+            path: 'timesheets',
+            name: 'Timesheets',
+            component: Timesheets
+          }
+        ]
       },
       {
         path: 'clients',
         name: 'Clients',
-        component: Clients
+        component: RouterView,
+        children: [
+          {
+            path: 'list',
+            name: 'ClientList',
+            component: ClientList
+          }
+        ]
       },
       {
         path: 'chat',
         name: 'Chat',
-        component: Chat,
+        component: RouterView,
         children: [
           {
             path: 'employees',
@@ -59,26 +109,9 @@ const routes = [
         ]
       },
       {
-        path: 'services',
-        name: 'Services',
-        component: Services
-      },
-      {
-        path: 'bookings',
-        name: 'Bookings',
-        component: Bookings,
-        children: [
-          {
-            path: 'pending',
-            name: 'Pending',
-            component: Bookings
-          },
-          {
-            path: 'approved',
-            name: 'Approved',
-            component: Bookings
-          }
-        ]
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
       },
       {
         path: 'notifications',

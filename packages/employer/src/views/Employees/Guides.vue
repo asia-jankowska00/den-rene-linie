@@ -1,10 +1,12 @@
 <template>
-  <div>Employees</div>
+  <div>
+    <h1>guides</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Employees',
+  name: 'Guides',
   components: {}
 }
 </script>

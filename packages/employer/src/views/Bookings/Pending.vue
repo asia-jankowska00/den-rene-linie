@@ -1,10 +1,10 @@
 <template>
-  <div>bookings</div>
+  <div>Pending</div>
 </template>
 
 <script>
 export default {
-  name: 'Bookings',
+  name: 'Pending',
   components: {}
 }
 </script>
