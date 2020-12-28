@@ -23,14 +23,8 @@
       "type": "datetime",
       "required": true
     },
-    "clientNote": {
-      "type": "richtext"
-    },
     "price": {
       "type": "decimal"
-    },
-    "employerNote": {
-      "type": "richtext"
     },
     "service": {
       "model": "service"
@@ -50,10 +44,6 @@
         "finished"
       ]
     },
-    "assignedEmployee": {
-      "plugin": "users-permissions",
-      "model": "user"
-    },
     "address": {
       "type": "string"
     },
@@ -63,14 +53,52 @@
     "meeting": {
       "type": "boolean"
     },
-    "termsOfServices": {
+    "termsOfService": {
       "type": "boolean",
       "required": true
     },
-    "customService": {
-      "type": "component",
-      "repeatable": true,
-      "component": "custom-service.custom-service"
+    "tasks": {
+      "collection": "task"
+    },
+    "frequencyType": {
+      "type": "enumeration",
+      "enum": [
+        "daily",
+        "on_weekends",
+        "weekly",
+        "monthly",
+        "yearly"
+      ]
+    },
+    "frequencyDurationAmount": {
+      "type": "integer"
+    },
+    "frequencyDurationType": {
+      "type": "enumeration",
+      "enum": [
+        "days",
+        "weeks",
+        "months",
+        "years"
+      ]
+    },
+    "employerToClientNote": {
+      "type": "text"
+    },
+    "employerToEmployeeNote": {
+      "type": "text"
+    },
+    "clientNote": {
+      "type": "text"
+    },
+    "paymentDetails": {
+      "type": "string"
+    },
+    "assignedEmployees": {
+      "plugin": "users-permissions",
+      "collection": "user",
+      "via": "bookings",
+      "dominant": true
     }
   }
 }

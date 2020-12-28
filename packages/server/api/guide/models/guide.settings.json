@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "guides",
   "info": {
-    "name": "guide"
+    "name": "guide",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -14,11 +15,11 @@
       "type": "string",
       "required": true
     },
-    "text": {
+    "description": {
       "type": "richtext",
       "required": true
     },
-    "image": {
+    "displayImage": {
       "collection": "file",
       "via": "related",
       "allowedTypes": [

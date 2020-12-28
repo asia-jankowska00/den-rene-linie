@@ -1,7 +1,7 @@
 {
   "collectionName": "components_custom_service_custom_services",
   "info": {
-    "name": "customTask",
+    "name": "serviceTask",
     "icon": "book-medical",
     "description": ""
   },
@@ -11,11 +11,8 @@
       "type": "string",
       "required": true
     },
-    "isComplete": {
-      "type": "boolean"
-    },
     "description": {
-      "type": "richtext"
+      "type": "text"
     }
   }
 }

@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "services",
   "info": {
-    "name": "service"
+    "name": "service",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -14,11 +15,6 @@
       "type": "string",
       "required": true
     },
-    "task_list": {
-      "collection": "task",
-      "via": "services",
-      "dominant": true
-    },
     "image": {
       "collection": "file",
       "via": "related",
@@ -29,6 +25,14 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "serviceTasks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.custom-service"
     }
   }
 }

@@ -86,6 +86,13 @@
     },
     "phone": {
       "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "bookings": {
+      "via": "assignedEmployees",
+      "collection": "booking"
     }
   }
 }
