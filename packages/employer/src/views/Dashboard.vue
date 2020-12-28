@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper is-flex is-flex-direction-column">
     <BarTop />
-    <div class="columns">
+    <div class="columns is-flex">
       <BarSide class="column sidebar" />
       <router-view class="column p-4" />
     </div>

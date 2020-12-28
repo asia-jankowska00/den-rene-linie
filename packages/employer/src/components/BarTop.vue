@@ -1,5 +1,5 @@
 <template>
-  <b-navbar class="has-background-light">
+  <b-navbar class="has-background-light px-3">
     <template slot="brand">
       <b-navbar-item tag="router-link" to="/dashboard">LOGO</b-navbar-item>
     </template>
