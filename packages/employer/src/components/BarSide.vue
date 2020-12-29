@@ -84,9 +84,8 @@
             ></b-menu-item>
           </b-menu-item>
           <b-menu-item
-            tag="router-link"
             active-class="is-active"
-            to="/login"
+            @click="logout"
             icon="sign-out-alt"
             label="Logout"
           ></b-menu-item>
@@ -97,7 +96,20 @@
 </template>
 
 <script>
-export default { name: 'BarBottom' }
+import { mapActions, mapMutations } from 'vuex'
+
+export default {
+  name: 'BarSide',
+  methods: {
+    ...mapMutations(['user/clearUser']),
+    ...mapActions(['user/logout']),
+    logout: function () {
+      this['user/logout']().then(() => {
+        this.$router.push('/')
+      })
+    }
+  }
+}
 </script>
 
 <style>

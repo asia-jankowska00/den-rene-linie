@@ -4,14 +4,14 @@
       <div class="column is-flex is-flex-direction-column">
         <div>
           <b-field label="Username">
-            <b-input value="johnsilver" maxlength="30"></b-input>
+            <b-input v-model="username"></b-input>
           </b-field>
 
           <b-field label="Password">
-            <b-input type="password" password-reveal></b-input>
+            <b-input v-model="password" type="password" password-reveal></b-input>
           </b-field>
 
-          <b-button tag="router-link" to="/dashboard">Log in</b-button>
+          <b-button @click="login">Log in</b-button>
         </div>
       </div>
       <b-image
@@ -23,11 +23,43 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Home',
-  components: {}
+  components: {},
+  data() {
+    return {
+      password: '',
+      username: ''
+    }
+  },
+  methods: {
+    ...mapActions(['user/login', 'user/getProfile']),
+    login: function () {
+      this['user/login']({
+        identifier: this.username,
+        password: this.password
+      })
+        .then(() => {
+          this.$router.push({ path: 'dashboard/bookings/pending' })
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
+  },
+  mounted: function () {
+    // try to fetch current user based on localStorage JWT and automatically redirect to dashboard
+    this['user/getProfile']()
+      .then(() => {
+        this.$router.push({ path: 'dashboard/bookings/pending' })
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }
 }
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

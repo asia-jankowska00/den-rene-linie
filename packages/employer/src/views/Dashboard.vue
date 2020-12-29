@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper is-flex is-flex-direction-column">
+  <div
+    v-if="this['user/user'] && this['user/user'].role.type === 'employer'"
+    class="wrapper is-flex is-flex-direction-column"
+  >
     <BarTop />
     <div class="columns is-flex">
       <BarSide class="column sidebar" />
@@ -9,12 +12,33 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import BarTop from '@/components/BarTop'
 import BarSide from '@/components/BarSide'
+import { SnackbarProgrammatic as Snackbar } from 'buefy'
 
 export default {
   name: 'Dashboard',
-  components: { BarTop, BarSide }
+  components: { BarTop, BarSide },
+  computed: {
+    ...mapGetters(['user/user'])
+  },
+  methods: {
+    ...mapActions(['user/getProfile'])
+  },
+  mounted: function () {
+    // try to fetch current user based on localStorage JWT
+    this['user/getProfile']()
+      .then(() => {})
+      .catch((e) => {
+        console.log(e)
+        // if no token or no user, redirect to login
+        if (!this['user/user']) {
+          this.$router.push('/')
+          Snackbar.open({ position: 'is-top', message: 'You are not logged in' })
+        }
+      })
+  }
 }
 </script>
 
