@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="this['user/user'] && this['user/user'].role.type === 'employer'"
+    v-if="this.user && this.user.role.type === 'employer'"
     class="wrapper is-flex is-flex-direction-column"
   >
     <BarTop />
@@ -21,16 +21,13 @@ export default {
   name: 'Dashboard',
   components: { BarTop, BarSide },
   computed: {
-    ...mapGetters(['user/user'])
-  },
-  methods: {
-    ...mapActions(['user/getProfile'])
+    ...mapGetters('user', ['user'])
   },
   mounted: function () {
     // try to fetch current user based on localStorage JWT
-    this['user/getProfile']()
+    this.getProfile()
       .then(() => {
-        if (this['user/user'].role.type !== 'employer') {
+        if (this.user.role.type !== 'employer') {
           this.$router.push('/')
           Snackbar.open({ position: 'is-top', message: 'Your account type doesnt have access' })
         }
@@ -38,11 +35,14 @@ export default {
       .catch((e) => {
         console.log(e)
         // if no token or no user, redirect to login
-        if (!this['user/user']) {
+        if (!this.user) {
           this.$router.push('/')
           Snackbar.open({ position: 'is-top', message: 'You are not logged in' })
         }
       })
+  },
+  methods: {
+    ...mapActions('user', ['getProfile'])
   }
 }
 </script>

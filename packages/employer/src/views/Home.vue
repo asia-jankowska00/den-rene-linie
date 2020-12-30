@@ -11,7 +11,7 @@
             <b-input v-model="password" type="password" password-reveal></b-input>
           </b-field>
 
-          <b-button @click="login">Log in</b-button>
+          <b-button @click="loginUser">Log in</b-button>
         </div>
       </div>
       <b-image
@@ -34,32 +34,33 @@ export default {
       username: ''
     }
   },
-  methods: {
-    ...mapActions(['user/login', 'user/getProfile']),
-    login: function () {
-      this['user/login']({
-        identifier: this.username,
-        password: this.password
-      })
-        .then(() => {
-          this.$router.push({ path: 'dashboard/bookings/pending' })
-        })
-        .catch((e) => {
-          console.log(e)
-        })
-    }
-  },
   mounted: function () {
     // try to fetch current user based on localStorage JWT and automatically redirect to dashboard
-    this['user/getProfile']()
+    this.getProfile()
       .then(() => {
-        if (this['user/user'].role.type === 'employer') {
-          this.$router.push({ path: 'dashboard/bookings/pending' })
+        if (this.user.role.type === 'employer') {
+          this.$router.push('/dashboard/bookings/pending')
         }
       })
       .catch((e) => {
         console.log(e)
       })
+  },
+  methods: {
+    ...mapActions('user', ['login']),
+    ...mapActions('user', ['getProfile']),
+    loginUser: function () {
+      this.login({
+        identifier: this.username,
+        password: this.password
+      })
+        .then(() => {
+          this.$router.push('/dashboard/bookings/pending')
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+    }
   }
 }
 </script>
