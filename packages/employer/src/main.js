@@ -6,11 +6,15 @@ import Buefy from 'buefy'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import dayjs from 'dayjs'
 
 library.add(fas)
 
 Vue.use(Buefy, { defaultIconComponent: 'vue-fontawesome', defaultIconPack: 'fas' })
 Vue.component('vue-fontawesome', FontAwesomeIcon)
+
+
+Vue.prototype.dayjs = dayjs
 
 Vue.config.productionTip = false
 
