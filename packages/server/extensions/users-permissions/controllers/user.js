@@ -13,7 +13,8 @@ module.exports = {
     } else {
       entities = await strapi.plugins['users-permissions'].services.user.fetchAll(ctx.query, [
         'bookings',
-        { path: 'bookings', populate: { path: 'service' } }
+        { path: 'bookings', populate: { path: 'service' } },
+        'role'
       ])
     }
 

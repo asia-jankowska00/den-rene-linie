@@ -35,6 +35,9 @@ export default {
   employees: {
     getEmployees: () => axios.get(`${baseUrl}/users?role.type=employee`, config())
   },
+  clients: {
+    getClients: () => axios.get(`${baseUrl}/users?role.type=business_client`, config())
+  },
   bookings: {
     getBooking: (id) => axios.get(`${baseUrl}/bookings/${id}`, config()),
     getPending: () => axios.get(`${baseUrl}/bookings?status=pending`, config()),
