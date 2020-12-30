@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="this.user && this.user.role.type === 'employer'"
+    v-if="user && user.role.type === 'employer'"
     class="wrapper is-flex is-flex-direction-column"
   >
     <BarTop />
