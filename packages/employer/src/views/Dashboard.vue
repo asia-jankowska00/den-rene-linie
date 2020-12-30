@@ -29,7 +29,12 @@ export default {
   mounted: function () {
     // try to fetch current user based on localStorage JWT
     this['user/getProfile']()
-      .then(() => {})
+      .then(() => {
+        if (this['user/user'].role.type !== 'employer') {
+          this.$router.push('/')
+          Snackbar.open({ position: 'is-top', message: 'Your account type doesnt have access' })
+        }
+      })
       .catch((e) => {
         console.log(e)
         // if no token or no user, redirect to login

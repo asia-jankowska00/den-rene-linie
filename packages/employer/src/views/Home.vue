@@ -53,7 +53,9 @@ export default {
     // try to fetch current user based on localStorage JWT and automatically redirect to dashboard
     this['user/getProfile']()
       .then(() => {
-        this.$router.push({ path: 'dashboard/bookings/pending' })
+        if (this['user/user'].role.type === 'employer') {
+          this.$router.push({ path: 'dashboard/bookings/pending' })
+        }
       })
       .catch((e) => {
         console.log(e)
