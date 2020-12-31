@@ -5,14 +5,16 @@ const state = () => ({
   bookingsPending: null,
   bookingsApproved: null,
   bookingsApprovedCalendarEvents: null,
-  bookingsForDate: null
+  bookingsForDate: null,
+  currentBooking: null
 })
 
 const getters = {
   bookingsApproved: (store) => store.bookingsApproved,
   bookingsApprovedCalendarEvents: (store) => store.bookingsApprovedCalendarEvents,
   bookingsPending: (store) => store.bookingsPending,
-  bookingsForDate: (store) => store.bookingsForDate
+  bookingsForDate: (store) => store.bookingsForDate,
+  currentBooking: (store) => store.currentBooking
 }
 
 const actions = {
@@ -55,7 +57,20 @@ const actions = {
         }
       })()
     })
-  }
+  },
+  getCurrentBooking({ commit }, bookingId) {
+    return new Promise((resolve, reject) => {
+      ;(async () => {
+        try {
+          const { data } = await api.bookings.getBooking(bookingId)
+          commit('updateCurrentBooking', data)
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      })()
+    })
+  },
 }
 
 const mutations = {
@@ -80,7 +95,10 @@ const mutations = {
   },
   updateBookingsForDate(state, payload) {
     state.bookingsForDate = payload
-  }
+  },
+  updateCurrentBooking(state, payload) {
+    state.currentBooking = payload
+  },
 }
 
 export default {

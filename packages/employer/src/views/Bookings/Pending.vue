@@ -19,7 +19,9 @@
       {{ props.row.status }}
     </b-table-column>
 
-    <b-table-column label="Actions"></b-table-column>
+    <b-table-column v-slot="props" label="Actions">
+      <router-link :to="`/dashboard/bookings/${props.row._id}`"><b-icon icon="envelope-open" ></b-icon></router-link>
+    </b-table-column>
   </b-table>
 </template>
 

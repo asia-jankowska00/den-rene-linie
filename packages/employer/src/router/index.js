@@ -9,6 +9,7 @@ import Guides from '../views/Employees/Guides.vue'
 import Timesheets from '../views/Employees/Timesheets.vue'
 import Pending from '../views/Bookings/Pending.vue'
 import Approved from '../views/Bookings/Approved.vue'
+import Booking from '../views/Bookings/Booking.vue'
 import ClientList from '../views/Clients/ClientList.vue'
 import ChatEmployees from '../views/Chat/ChatEmployees.vue'
 import ChatClients from '../views/Chat/ChatClients.vue'
@@ -44,7 +45,12 @@ const routes = [
             path: 'approved',
             name: 'Approved',
             component: Approved
-          }
+          },
+          {
+            path: ':id',
+            name: 'Booking',
+            component: Booking
+          },
         ]
       },
       {

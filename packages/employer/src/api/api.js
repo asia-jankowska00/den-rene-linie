@@ -46,7 +46,7 @@ export default {
     getClients: () => axios.get(`${baseUrl}/users?role.type=business_client`, config())
   },
   bookings: {
-    getBooking: (id) => axios.get(`${baseUrl}/bookings/${id}`, config()),
+    getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
     getPending: () => axios.get(`${baseUrl}/bookings?status=pending`, config()),
     getApproved: () => axios.get(`${baseUrl}/bookings?status_ne=pending`, config()),
     getBookingsForDate: (dayStart, dayEnd) =>
