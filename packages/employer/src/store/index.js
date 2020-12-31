@@ -4,6 +4,7 @@ import user from './modules/user.js'
 import bookings from './modules/bookings.js'
 import employees from './modules/employees.js'
 import clients from './modules/clients.js'
+import messages from './modules/messages.js'
 
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ export default new Vuex.Store({
     user,
     bookings,
     employees,
-    clients
+    clients,
+    messages
   }
 })

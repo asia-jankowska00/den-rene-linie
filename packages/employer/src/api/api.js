@@ -25,12 +25,19 @@ const dayQuery = (dayStart, dayEnd) => {
   })
 }
 
+const userMessagesQuery = (id) => {
+  return qs.stringify({
+    _where: { _or: [{ receiver: { _id: id } }, { sender: { _id: id } }] }
+  })
+}
+
 export default {
   auth: {
     login: (userObj) => axios.post(`${baseUrl}/auth/local`, userObj)
   },
   users: {
-    getProfile: () => axios.get(`${baseUrl}/users/me`, config())
+    getProfile: () => axios.get(`${baseUrl}/users/me`, config()),
+    getUser: (userId) => axios.get(`${baseUrl}/users/${userId}`, config())
   },
   employees: {
     getEmployees: () => axios.get(`${baseUrl}/users?role.type=employee`, config())
@@ -44,5 +51,9 @@ export default {
     getApproved: () => axios.get(`${baseUrl}/bookings?status_ne=pending`, config()),
     getBookingsForDate: (dayStart, dayEnd) =>
       axios.get(`${baseUrl}/bookings?status_ne=pending&${dayQuery(dayStart, dayEnd)}`, config())
+  },
+  messages: {
+    postMessage: (message) => axios.post(`${baseUrl}/messages`, message, config()),
+    getUserMessages: (userId) => axios.get(`${baseUrl}/messages?${userMessagesQuery(userId)}`, config())
   }
 }
