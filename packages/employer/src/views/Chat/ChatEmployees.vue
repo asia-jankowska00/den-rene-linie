@@ -34,8 +34,8 @@
 
       <b-field label="Message">
         <b-input
-          class="column"
           v-model="newMessage.text"
+          class="column"
           minlength="1"
           maxlength="300"
           type="textarea"
