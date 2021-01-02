@@ -17,7 +17,7 @@
           </b-table-column>
 
           <b-table-column v-slot="props">
-            <span>{{ props.row.firstName + ' ' + props.row.lastName }}</span>
+            <span>{{ formatName(props.row) }}</span>
           </b-table-column>
 
           <b-table-column>Inactive</b-table-column>
@@ -28,7 +28,7 @@
           </b-table-column>
 
           <b-table-column v-slot="props">
-            <span>{{ props.row.firstName + ' ' + props.row.lastName }}</span>
+            <span>{{ formatName(props.row) }}</span>
           </b-table-column>
 
           <b-table-column>Inactive</b-table-column>
@@ -43,7 +43,7 @@
           </b-table-column>
 
           <b-table-column v-slot="props" label="Business Details">
-            <span>{{ props.row.client.firstName + ' ' + props.row.client.lastName }}</span>
+            <span>{{ formatName(props.row.client) }}</span>
           </b-table-column>
 
           <b-table-column v-slot="props" label="Date">
@@ -107,17 +107,18 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.datepicker .dropdown-content {
+<style scoped lang="scss">
+/deep/ .datepicker .dropdown-content {
   box-shadow: none;
 }
 
-.datepicker .datepicker-table .datepicker-body .datepicker-cell,
+/deep/ .datepicker .datepicker-table .datepicker-body .datepicker-cell,
 .datepicker .datepicker-table .datepicker-body.datepicker-body.has-events .datepicker-cell {
   padding: 2vw 3.5vw 2vw 3.5vw;
 }
 
-.datepicker
+/deep/
+  .datepicker
   .datepicker-table
   .datepicker-body.has-events
   .datepicker-cell.has-event

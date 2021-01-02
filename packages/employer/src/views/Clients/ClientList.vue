@@ -5,7 +5,7 @@
     </b-table-column>
 
     <b-table-column v-slot="props" label="Client details">
-      <span>{{ props.row.firstName + ' ' + props.row.lastName }}</span>
+      <span>{{ formatName(props.row) }}</span>
     </b-table-column>
 
     <b-table-column v-slot="props" label="Bookings" centered>

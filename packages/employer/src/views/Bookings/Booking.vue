@@ -7,7 +7,7 @@
         <h2 class="subtitle is-4">Client details</h2>
         <LabeledInfo
           label="Client Name"
-          :text="currentBooking.client.firstName + ' ' + currentBooking.client.lastName"
+          :text="formatName(currentBooking.client)"
         />
         <LabeledInfo label="Address" :text="currentBooking.client.description" />
         <LabeledInfo label="Telephone" :text="currentBooking.client.phone" />

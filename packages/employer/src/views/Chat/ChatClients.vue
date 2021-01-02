@@ -6,7 +6,7 @@
           <b-menu-item
             v-for="(client, index) in clients"
             :key="index"
-            :label="client.firstName + ' ' + client.lastName"
+            :label="formatName(client)"
             @click="getMessages(client._id)"
           ></b-menu-item>
         </b-menu-list>
@@ -25,7 +25,7 @@
             :class="[message.sender._id === user._id ? 'sender' : 'receiver']"
           >
             <p class="has-text-weight-bold">
-              {{ message.sender.firstName + ' ' + message.sender.lastName }}
+              {{ formatName(message.sender) }}
             </p>
             <p class="py-2">{{ message.text }}</p>
           </li>

@@ -13,10 +13,17 @@ library.add(fas)
 Vue.use(Buefy, { defaultIconComponent: 'vue-fontawesome', defaultIconPack: 'fas' })
 Vue.component('vue-fontawesome', FontAwesomeIcon)
 
-
 Vue.prototype.dayjs = dayjs
 
 Vue.config.productionTip = false
+
+Vue.mixin({
+  methods: {
+    formatName(user) {
+      return `${user.firstName} ${user.lastName}`
+    }
+  }
+})
 
 new Vue({
   store,

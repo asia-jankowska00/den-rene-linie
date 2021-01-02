@@ -5,7 +5,7 @@
     </b-table-column>
 
     <b-table-column v-slot="props" label="Business Details">
-      <span>{{ props.row.client.firstName + ' ' + props.row.client.lastName }}</span>
+      <span>{{ formatName(props.row) }}</span>
     </b-table-column>
 
     <b-table-column v-slot="props" label="Date">
