@@ -11,7 +11,7 @@
               <b-icon class="file-icon" icon="upload"></b-icon>
               <span class="file-label">Click to upload picture</span>
             </span>
-            <span class="file-name" v-if="file">
+            <span v-if="file" class="file-name">
               {{ file.name }}
             </span>
           </b-upload>
@@ -42,7 +42,7 @@
             <button class="button">Reset</button>
           </div>
           <div class="control">
-            <button @click="submit" class="button">Save and invite</button>
+            <button class="button" @click="submit">Save and invite</button>
           </div>
         </div>
       </div>
