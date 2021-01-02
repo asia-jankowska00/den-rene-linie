@@ -48,8 +48,8 @@
 
           <b-table-column v-slot="props" label="Date">
             <p>
-              {{ dayjs(props.row.startDate).format('DD/MM/YYYY') }} -
-              {{ dayjs(props.row.endDate).format('DD/MM/YYYY') }}
+              {{ formatDate(props.row.startDate) }} -
+              {{ formatDate(props.row.endDate) }}
             </p>
           </b-table-column>
 
