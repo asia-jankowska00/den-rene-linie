@@ -21,9 +21,22 @@ const actions = {
         }
       })()
     })
+  },
+  /* eslint-disable no-unused-vars */
+  addEmployee({ commit }, employeeObj) {
+    return new Promise((resolve, reject) => {
+      ;(async () => {
+        try {
+          await api.employees.addEmployee(employeeObj)
+          resolve()
+        } catch (err) {
+          console.log(err.response.data.message)
+          reject(err)
+        }
+      })()
+    })
   }
 }
-
 
 const mutations = {
   updateEmployees(state, payload) {

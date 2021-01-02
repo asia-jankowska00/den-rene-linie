@@ -40,7 +40,8 @@ export default {
     getUser: (userId) => axios.get(`${baseUrl}/users/${userId}`, config())
   },
   employees: {
-    getEmployees: () => axios.get(`${baseUrl}/users?role.type=employee`, config())
+    getEmployees: () => axios.get(`${baseUrl}/users?role.type=employee`, config()),
+    addEmployee: (employeeObj) => axios.post(`${baseUrl}/auth/local/register`, employeeObj),
   },
   clients: {
     getClients: () => axios.get(`${baseUrl}/users?role.type=business_client`, config())
