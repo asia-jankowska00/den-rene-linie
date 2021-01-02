@@ -72,5 +72,11 @@ export default {
   stopwatches: {
     getStopwatches: (employeeId, fromDate, toDate) =>
       axios.get(`${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`, config())
+  },
+  guides: {
+    getGuides: () => axios.get(`${baseUrl}/guides`, config())
+  },
+  services: {
+    getServices: () => axios.get(`${baseUrl}/services`, config())
   }
 }

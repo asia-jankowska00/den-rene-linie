@@ -6,6 +6,8 @@ import employees from './modules/employees.js'
 import clients from './modules/clients.js'
 import messages from './modules/messages.js'
 import stopwatches from './modules/stopwatches.js'
+import services from './modules/services.js'
+import guides from './modules/guides.js'
 
 Vue.use(Vuex)
 
@@ -16,6 +18,8 @@ export default new Vuex.Store({
     employees,
     clients,
     messages,
-    stopwatches
+    stopwatches,
+    services,
+    guides
   }
 })
