@@ -25,6 +25,17 @@ const dayQuery = (dayStart, dayEnd) => {
   })
 }
 
+const stopwatchesQuery = (fromDate, toDate) => {
+  return qs.stringify({
+    _where: {
+      _or: [
+        [{ startDate_gte: fromDate }, { startDate_lte: toDate }],
+        [{ endDate_gte: fromDate }, { endDate_lte: toDate }]
+      ]
+    }
+  })
+}
+
 const userMessagesQuery = (id) => {
   return qs.stringify({
     _where: { _or: [{ receiver: { _id: id } }, { sender: { _id: id } }] }
@@ -41,7 +52,7 @@ export default {
   },
   employees: {
     getEmployees: () => axios.get(`${baseUrl}/users?role.type=employee`, config()),
-    addEmployee: (employeeObj) => axios.post(`${baseUrl}/auth/local/register`, employeeObj),
+    addEmployee: (employeeObj) => axios.post(`${baseUrl}/auth/local/register`, employeeObj)
   },
   clients: {
     getClients: () => axios.get(`${baseUrl}/users?role.type=business_client`, config())
@@ -55,6 +66,11 @@ export default {
   },
   messages: {
     postMessage: (message) => axios.post(`${baseUrl}/messages`, message, config()),
-    getUserMessages: (userId) => axios.get(`${baseUrl}/messages?${userMessagesQuery(userId)}`, config())
+    getUserMessages: (userId) =>
+      axios.get(`${baseUrl}/messages?${userMessagesQuery(userId)}`, config())
+  },
+  stopwatches: {
+    getStopwatches: (employeeId, fromDate, toDate) =>
+      axios.get(`${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`, config())
   }
 }

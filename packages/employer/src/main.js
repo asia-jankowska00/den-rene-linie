@@ -7,7 +7,6 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs'
-import duration from 'dayjs/plugin/duration'
 
 library.add(fas)
 
@@ -15,7 +14,6 @@ Vue.use(Buefy, { defaultIconComponent: 'vue-fontawesome', defaultIconPack: 'fas'
 Vue.component('vue-fontawesome', FontAwesomeIcon)
 
 Vue.prototype.dayjs = dayjs
-dayjs.extend(duration)
 
 Vue.config.productionTip = false
 
@@ -26,6 +24,9 @@ Vue.mixin({
     },
     formatDate(date) {
       return dayjs(date).format('DD/MM/YYYY')
+    },
+    formatDateTime(date) {
+      return dayjs(date).format('DD/MM/YYYY, hh:mm')
     },
     formatDuration(date) {
       return dayjs(date).format('hh:mm')
