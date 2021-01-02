@@ -5,19 +5,26 @@
  * to customize this controller
  */
 
+const { sanitizeEntity } = require('strapi-utils');
+
+const sanitizeUser = user =>
+  sanitizeEntity(user, {
+    model: strapi.query('user', 'users-permissions').model,
+  });
+
 module.exports = {
   async find(ctx) {
-    let entities
+    let users
     if (ctx.query._q) {
-      entities = await strapi.plugins['users-permissions'].services.user.search(ctx.query)
+      users = await strapi.plugins['users-permissions'].services.user.search(ctx.query)
     } else {
-      entities = await strapi.plugins['users-permissions'].services.user.fetchAll(ctx.query, [
+      users = await strapi.plugins['users-permissions'].services.user.fetchAll(ctx.query, [
         'bookings',
         { path: 'bookings', populate: { path: 'service' } },
         'role'
       ])
     }
 
-    return entities
+    ctx.body = users.map(sanitizeUser);
   }
 }
