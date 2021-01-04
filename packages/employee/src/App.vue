@@ -7,14 +7,14 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
-  components: { }
+  components: {}
 }
 </script>
 
 <style lang="scss">
+@import './custom';
 #app {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
@@ -39,5 +39,4 @@ export default {
   max-height: 100%;
   position: relative;
 }
-
 </style>

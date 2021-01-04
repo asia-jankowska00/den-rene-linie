@@ -8,6 +8,8 @@ import Profile from '../views/Profile.vue'
 import Chat from '../views/Chat.vue'
 import Services from '../views/Services.vue'
 import Bookings from '../views/Bookings.vue'
+import Booking from '../views/Booking.vue'
+import Timesheets from '../views/Timesheets.vue'
 import Notifications from '../views/Notifications.vue'
 
 Vue.use(VueRouter)
@@ -51,7 +53,17 @@ const routes = [
       {
         path: 'bookings',
         name: 'Bookings',
-        component: Bookings
+        component: Bookings        
+      },
+      {
+        path: 'bookings/:id',
+        name: 'Booking',
+        component: Booking
+      },
+      {
+        path: 'timesheets',
+        name: 'Timesheets',
+        component: Timesheets
       },
       {
         path: 'notifications',

@@ -1,7 +1,7 @@
 <template>
   <div>
     <BarTop />
-    <router-view class="content" />
+    <router-view class="content view" />
     <BarBottom />
   </div>
 </template>
@@ -19,5 +19,8 @@ export default {
 <style>
 .content {
   padding: 10px;
+}
+.view {
+  padding-bottom: 3.5rem;
 }
 </style>
