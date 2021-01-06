@@ -61,6 +61,40 @@
             <router-link :to="`/dashboard/bookings/${props.row._id}`">
               <b-icon icon="envelope-open"></b-icon>
             </router-link>
+
+            <b-icon
+              icon="user-plus"
+              class="is-primary"
+              @click.native="toggleAssignEmployeeModal"
+            ></b-icon>
+            <b-modal
+              v-model="isAssignEmployeeModalActive"
+              has-modal-card
+              :destroy-on-hide="false"
+              aria-role="dialog"
+              aria-modal
+            >
+              <template>
+                <Modal
+                  title="Assign employee"
+                  @close="toggleAssignEmployeeModal"
+                  @confirm="setAssignedEmployees(props.row._id)"
+                >
+                  <p>Select employee (ctrl + click to select multiple)</p>
+                  <b-field>
+                    <b-select expanded multiple v-model="selectedEmployees">
+                      <option
+                        v-for="(employee, index) in employees"
+                        :key="index"
+                        :value="employee._id"
+                      >
+                        <b-checkbox>{{ formatName(employee) }}</b-checkbox>
+                      </option>
+                    </b-select>
+                  </b-field>
+                </Modal>
+              </template>
+            </b-modal>
           </b-table-column>
         </b-table>
       </div>
@@ -71,12 +105,18 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
+import Modal from '@/components/Modal.vue'
 
 export default {
   name: 'Approved',
+  components: {
+    Modal
+  },
   data() {
     return {
-      selectedDate: new Date()
+      selectedDate: new Date(),
+      isAssignEmployeeModalActive: false,
+      selectedEmployees: []
     }
   },
   computed: {
@@ -102,7 +142,23 @@ export default {
   methods: {
     ...mapActions('bookings', ['getBookingsApproved']),
     ...mapActions('employees', ['getEmployees']),
-    ...mapActions('bookings', ['getBookingsForDate'])
+    ...mapActions('bookings', ['getBookingsForDate']),
+    ...mapActions('bookings', ['updateBooking']),
+    toggleAssignEmployeeModal() {
+      this.isAssignEmployeeModalActive = !this.isAssignEmployeeModalActive
+    },
+    async setAssignedEmployees(bookingId) {
+      const bookingData = {
+        status: 'employeeAssigned',
+        assignedEmployees: this.selectedEmployees
+      }
+      await this.updateBooking({ bookingId, bookingData })
+      await this.getBookingsApproved()
+      
+      const endDate = dayjs(this.selectedDate).add(1, 'day').toDate()
+      await this.getBookingsForDate({ dayStart: this.selectedDate, dayEnd: endDate })
+      this.toggleAssignEmployeeModal()
+    }
   }
 }
 </script>
