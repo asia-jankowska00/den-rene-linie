@@ -11,8 +11,25 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Home',
-  components: {}
+  components: {},
+  methods: {
+    ...mapActions('user', ['getProfile'])
+  },
+  mounted: function () {
+    // try to fetch current user based on localStorage JWT and automatically redirect to dashboard
+    this.getProfile()
+      .then(() => {
+        if (this.user.role.type === 'business_client') {
+          this.$router.push('/dashboard/bookings')
+        }
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }
 }
 </script>
