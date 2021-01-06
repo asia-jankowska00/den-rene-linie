@@ -31,7 +31,7 @@ export default { name: 'BarBottom' }
 
 <style>
 .bar-bottom {
-  position: absolute;
+
   bottom: 0;
   left: 0;
   width: 100%;

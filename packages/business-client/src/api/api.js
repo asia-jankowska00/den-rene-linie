@@ -25,9 +25,11 @@ const dayQuery = (dayStart, dayEnd) => {
   })
 }
 
+const employerId = '5feb3447214c2f2d14529e1b'
+
 const userMessagesQuery = (id) => {
   return qs.stringify({
-    _where: { _or: [{ receiver: { _id: id } }, { sender: { _id: id } }] }
+    _where: { _or: [[{ receiver: { _id: id } },  { sender: { _id: employerId } }], [{ receiver: { _id: employerId } }, { sender: { _id: id } }]] }
   })
 }
 
