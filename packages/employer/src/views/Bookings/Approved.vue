@@ -58,43 +58,52 @@
           </b-table-column>
 
           <b-table-column v-slot="props" label="Actions">
-            <router-link :to="`/dashboard/bookings/${props.row._id}`">
-              <b-icon icon="envelope-open"></b-icon>
-            </router-link>
+            <div class="is-flex is-flex-direction-column">
+              <b-button
+                size="is-small"
+                icon-left="envelope-open"
+                tag="router-link"
+                :to="`/dashboard/bookings/${props.row._id}`"
+              >
+                Open details
+              </b-button>
 
-            <b-icon
-              icon="user-plus"
-              class="is-primary"
-              @click.native="toggleAssignEmployeeModal"
-            ></b-icon>
-            <b-modal
-              v-model="isAssignEmployeeModalActive"
-              has-modal-card
-              :destroy-on-hide="false"
-              aria-role="dialog"
-              aria-modal
-            >
-              <template>
-                <Modal
-                  title="Assign employee"
-                  @close="toggleAssignEmployeeModal"
-                  @confirm="setAssignedEmployees(props.row._id)"
-                >
-                  <p>Select employee (ctrl + click to select multiple)</p>
-                  <b-field>
-                    <b-select expanded multiple v-model="selectedEmployees">
-                      <option
-                        v-for="(employee, index) in employees"
-                        :key="index"
-                        :value="employee._id"
-                      >
-                        <b-checkbox>{{ formatName(employee) }}</b-checkbox>
-                      </option>
-                    </b-select>
-                  </b-field>
-                </Modal>
-              </template>
-            </b-modal>
+              <b-button
+                size="is-small"
+                icon-left="user-plus"
+                @click.native="toggleAssignEmployeeModal"
+              >
+                Assign employee
+              </b-button>
+              <b-modal
+                v-model="isAssignEmployeeModalActive"
+                has-modal-card
+                :destroy-on-hide="false"
+                aria-role="dialog"
+                aria-modal
+              >
+                <template>
+                  <Modal
+                    title="Assign employee"
+                    @close="toggleAssignEmployeeModal"
+                    @confirm="setAssignedEmployees(props.row._id)"
+                  >
+                    <p>Select employee (ctrl + click to select multiple)</p>
+                    <b-field>
+                      <b-select expanded multiple v-model="selectedEmployees">
+                        <option
+                          v-for="(employee, index) in employees"
+                          :key="index"
+                          :value="employee._id"
+                        >
+                          <b-checkbox>{{ formatName(employee) }}</b-checkbox>
+                        </option>
+                      </b-select>
+                    </b-field>
+                  </Modal>
+                </template>
+              </b-modal>
+            </div>
           </b-table-column>
         </b-table>
       </div>
@@ -154,7 +163,7 @@ export default {
       }
       await this.updateBooking({ bookingId, bookingData })
       await this.getBookingsApproved()
-      
+
       const endDate = dayjs(this.selectedDate).add(1, 'day').toDate()
       await this.getBookingsForDate({ dayStart: this.selectedDate, dayEnd: endDate })
       this.toggleAssignEmployeeModal()

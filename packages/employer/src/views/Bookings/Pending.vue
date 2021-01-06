@@ -21,76 +21,89 @@
       </b-table-column>
 
       <b-table-column v-slot="props" label="Actions">
-        <router-link :to="`/dashboard/bookings/${props.row._id}`">
-          <b-icon icon="envelope-open"></b-icon>
-        </router-link>
+        <div class="is-flex is-flex-direction-column">
+          <b-button
+            size="is-small"
+            icon-left="envelope-open"
+            tag="router-link"
+            :to="`/dashboard/bookings/${props.row._id}`"
+          >
+            Open details
+          </b-button>
 
-        <b-icon icon="times" class="is-primary" @click.native="toggleRejectModal"></b-icon>
-        <b-modal
-          v-model="isRejectModalActive"
-          has-modal-card
-          :destroy-on-hide="false"
-          aria-role="dialog"
-          aria-modal
-        >
-          <template>
-            <modal
-              title="Reject booking"
-              @confirm="setBookingRejected(props.row._id)"
-              @close="toggleRejectModal"
-            >
-              <b-field horizontal label="Reason for rejection">
-                <b-input type="textarea" v-model="rejectionReason"></b-input>
-              </b-field>
-            </modal>
-          </template>
-        </b-modal>
+          <b-button size="is-small" icon-left="times" @click.native="toggleRejectModal">
+            Reject
+          </b-button>
+          <b-modal
+            v-model="isRejectModalActive"
+            has-modal-card
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-modal
+          >
+            <template>
+              <Modal
+                title="Reject booking"
+                @confirm="setBookingRejected(props.row._id)"
+                @close="toggleRejectModal"
+              >
+                <b-field horizontal label="Reason for rejection">
+                  <b-input type="textarea" v-model="rejectionReason"></b-input>
+                </b-field>
+              </Modal>
+            </template>
+          </b-modal>
 
-        <b-icon icon="credit-card" class="is-primary" @click.native="togglePaymentModal"></b-icon>
-        <b-modal
-          v-model="isPaymentModalActive"
-          has-modal-card
-          :destroy-on-hide="false"
-          aria-role="dialog"
-          aria-modal
-        >
-          <template>
-            <modal
-              title="Payment status"
-              @close="togglePaymentModal"
-              @confirm="setBookingPaid(props.row._id)"
-            >
-              <p>Is this booking paid for?</p>
-            </modal>
-          </template>
-        </b-modal>
+          <b-button size="is-small" icon-left="credit-card" @click.native="togglePaymentModal">
+            Payment
+          </b-button>
+          <b-modal
+            v-model="isPaymentModalActive"
+            has-modal-card
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-modal
+          >
+            <template>
+              <Modal
+                title="Payment status"
+                @close="togglePaymentModal"
+                @confirm="setBookingPaid(props.row._id)"
+              >
+                <p>Is this booking paid for?</p>
+              </Modal>
+            </template>
+          </b-modal>
 
-        <b-icon icon="check" class="is-primary" @click.native="toggleApproveModal"></b-icon>
-        <b-modal
-          v-model="isApproveModalActive"
-          has-modal-card
-          :destroy-on-hide="false"
-          aria-role="dialog"
-          aria-modal
-        >
-          <template>
-            <modal
-              title="Payment status"
-              @close="toggleApproveModal"
-              @confirm="setBookingApproved(props.row._id)"
-            >
-              <b-field horizontal label="Note">
-                <b-input type="textarea" v-model="approveNote"></b-input>
-              </b-field>
-              <b-field horizontal label="Price">
-                <b-input type="number" v-model="price"></b-input>
-              </b-field>
-              <b-field horizontal label="Payment details">
-                <b-input v-model="paymentDetails"></b-input>
-              </b-field>
-            </modal>
-          </template>
-        </b-modal>
+          <b-button size="is-small" icon-left="check" @click.native="toggleApproveModal">
+            Approve
+          </b-button>
+          <b-modal
+            v-model="isApproveModalActive"
+            has-modal-card
+            :destroy-on-hide="false"
+            aria-role="dialog"
+            aria-modal
+          >
+            <template>
+              <Modal
+                title="Payment status"
+                @close="toggleApproveModal"
+                @confirm="setBookingApproved(props.row._id)"
+              >
+                <b-field horizontal label="Note">
+                  <b-input type="textarea" v-model="approveNote"></b-input>
+                </b-field>
+                <b-field horizontal label="Price">
+                  <b-input type="number" v-model="price"></b-input>
+                </b-field>
+                <b-field horizontal label="Payment details">
+                  <b-input v-model="paymentDetails"></b-input>
+                </b-field>
+              </Modal>
+            </template>
+          </b-modal>
+        </div>
       </b-table-column>
     </b-table>
   </div>
@@ -141,7 +154,7 @@ export default {
       }
       await this.updateBooking({ bookingId, bookingData })
       await this.getBookingsPending()
-      await this.togglePaymentModal()
+      this.togglePaymentModal()
     },
     async setBookingPaid(bookingId) {
       const bookingData = {
@@ -149,7 +162,7 @@ export default {
       }
       await this.updateBooking({ bookingId, bookingData })
       await this.getBookingsPending()
-      await this.togglePaymentModal()
+      this.toggleRejectModal()
     },
     async setBookingApproved(bookingId) {
       const bookingData = {
@@ -160,7 +173,7 @@ export default {
       }
       await this.updateBooking({ bookingId, bookingData })
       await this.getBookingsPending()
-      await this.togglePaymentModal()
+      this.toggleApproveModal()
     }
   }
 }
