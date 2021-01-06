@@ -14,8 +14,6 @@ import ClientList from '../views/Clients/ClientList.vue'
 import ChatEmployees from '../views/Chat/ChatEmployees.vue'
 import ChatClients from '../views/Chat/ChatClients.vue'
 import Services from '../views/Services.vue'
-import Profile from '../views/Profile.vue'
-import Notifications from '../views/Notifications.vue'
 
 Vue.use(VueRouter)
 
@@ -113,16 +111,6 @@ const routes = [
             component: ChatClients
           }
         ]
-      },
-      {
-        path: 'profile',
-        name: 'Profile',
-        component: Profile
-      },
-      {
-        path: 'notifications',
-        name: 'Notifications',
-        component: Notifications
       }
     ]
   }
