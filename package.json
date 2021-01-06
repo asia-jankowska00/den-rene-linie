@@ -15,7 +15,5 @@
     "start-eme": "lerna exec --scope @den-rene-linie/employee npm run serve",
     "start-server": "lerna exec --scope  @den-rene-linie/server npm run develop"
   },
-  "dependencies": {
-    "axios": "^0.21.1"
-  }
+  "dependencies": {}
 }
