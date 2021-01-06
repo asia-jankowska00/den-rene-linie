@@ -58,6 +58,7 @@ const actions = {
       })()
     })
   },
+  /* eslint-disable no-unused-vars */
   getCurrentBooking({ commit }, bookingId) {
     return new Promise((resolve, reject) => {
       ;(async () => {
@@ -71,6 +72,18 @@ const actions = {
       })()
     })
   },
+  updateBooking({ commit }, { bookingId, bookingData }) {
+    return new Promise((resolve, reject) => {
+      ;(async () => {
+        try {
+          await api.bookings.updateBooking(bookingId, bookingData)
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      })()
+    })
+  }
 }
 
 const mutations = {
@@ -98,7 +111,7 @@ const mutations = {
   },
   updateCurrentBooking(state, payload) {
     state.currentBooking = payload
-  },
+  }
 }
 
 export default {

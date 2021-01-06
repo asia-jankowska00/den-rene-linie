@@ -81,8 +81,8 @@ export default {
 }
 </script>
 
-<style>
-.field-label {
+<style scoped lang="scss">
+/deep/ .field-label {
   min-width: 10rem;
 }
 </style>

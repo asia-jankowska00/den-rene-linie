@@ -62,7 +62,8 @@ export default {
     getPending: () => axios.get(`${baseUrl}/bookings?status=pending`, config()),
     getApproved: () => axios.get(`${baseUrl}/bookings?status_ne=pending`, config()),
     getBookingsForDate: (dayStart, dayEnd) =>
-      axios.get(`${baseUrl}/bookings?status_ne=pending&${dayQuery(dayStart, dayEnd)}`, config())
+      axios.get(`${baseUrl}/bookings?status_ne=pending&${dayQuery(dayStart, dayEnd)}`, config()),
+    updateBooking: (bookingId, data) => axios.put(`${baseUrl}/bookings/${bookingId}`, data, config()),
   },
   messages: {
     postMessage: (message) => axios.post(`${baseUrl}/messages`, message, config()),
