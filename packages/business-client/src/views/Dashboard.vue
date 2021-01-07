@@ -4,7 +4,7 @@
     class="wrapper is-flex is-flex-direction-column"
   >
     <BarTop />
-    <router-view class="content" />
+    <router-view class="content p-5" />
     <BarBottom />
   </div>
 </template>
@@ -47,7 +47,6 @@ export default {
 
 <style>
 .content {
-  padding: 10px;
   height: 100%;
   flex: 1 !important;
 }

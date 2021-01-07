@@ -36,6 +36,9 @@ Vue.mixin({
     },
     formatDuration(date) {
       return dayjs(date).format('hh:mm')
+    },
+    formatImageUrl(url) {
+      return `${baseUrl}${url}`
     }
   }
 })
