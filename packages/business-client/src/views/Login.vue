@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Login',
@@ -23,6 +23,9 @@ export default {
       password: '',
       username: ''
     }
+  },
+  computed: {
+    ...mapGetters('user', ['user'])
   },
   mounted() {
     // try to fetch current user based on localStorage JWT and automatically redirect to dashboard

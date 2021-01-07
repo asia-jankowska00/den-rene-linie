@@ -11,11 +11,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
   components: {},
+  computed: {
+    ...mapGetters('user', ['user'])
+  },
   methods: {
     ...mapActions('user', ['getProfile'])
   },
