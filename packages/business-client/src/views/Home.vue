@@ -19,9 +19,6 @@ export default {
   computed: {
     ...mapGetters('user', ['user'])
   },
-  methods: {
-    ...mapActions('user', ['getProfile'])
-  },
   mounted: function () {
     // try to fetch current user based on localStorage JWT and automatically redirect to dashboard
     this.getProfile()
@@ -33,6 +30,9 @@ export default {
       .catch((e) => {
         console.log(e)
       })
+  },
+  methods: {
+    ...mapActions('user', ['getProfile'])
   }
 }
 </script>
