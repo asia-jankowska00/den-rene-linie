@@ -33,7 +33,7 @@ export default {
 
 .wrapper {
   background: #ffffff;
-  width: 500px;
+  max-width: 500px;
   max-width: 500px;
   min-height: 100%;
   max-height: 100%;
