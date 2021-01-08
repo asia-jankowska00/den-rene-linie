@@ -44,11 +44,11 @@ export default {
   },
   bookings: {
     getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
-    getPending: () => axios.get(`${baseUrl}/bookings?status=pending`, config()),
-    getApproved: () => axios.get(`${baseUrl}/bookings?status_ne=pending`, config()),
+    getBookingsByUser: (userId) => axios.get(`${baseUrl}/bookings?client._id=${userId}`, config()),
     getBookingsForDate: (dayStart, dayEnd) =>
       axios.get(`${baseUrl}/bookings?status_ne=pending&${dayQuery(dayStart, dayEnd)}`, config()),
     updateBooking: (bookingId, data) => axios.put(`${baseUrl}/bookings/${bookingId}`, data, config()),
+    createBooking: (booking) => axios.post(`${baseUrl}/bookings`, booking, config())
   },
   messages: {
     postMessage: (message) => axios.post(`${baseUrl}/messages`, message, config()),
