@@ -5,7 +5,7 @@
     ></b-image>
     <div class="actions content is-flex is-flex-direction-column">
       <b-button class="my-1" tag="router-link" to="/login">Log in</b-button>
-      <b-button class="my-1" tag="router-link" to="/register">Sign-up</b-button>
+      <!--<b-button class="my-1" tag="router-link" to="/register">Sign-up</b-button>-->
     </div>
   </div>
 </template>
@@ -13,6 +13,6 @@
 <script>
 export default {
   name: 'Home',
-  components: {}
+  components: {},
 }
 </script>
