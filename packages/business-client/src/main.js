@@ -32,10 +32,10 @@ Vue.mixin({
       return dayjs(date).format('DD/MM/YYYY')
     },
     formatDateTime(date) {
-      return dayjs(date).format('DD/MM/YYYY, hh:mm')
+      return dayjs(date).format('DD/MM/YYYY, HH:mm')
     },
     formatDuration(date) {
-      return dayjs(date).format('hh:mm')
+      return dayjs(date).format('HH:mm')
     },
     formatImageUrl(url) {
       return `${baseUrl}${url}`

@@ -7,10 +7,9 @@
 </template>
 
 <script>
-
 export default {
   name: 'App',
-  components: { }
+  components: {}
 }
 </script>
 
@@ -33,11 +32,14 @@ export default {
 
 .wrapper {
   background: #ffffff;
-  max-width: 500px;
+  min-width: 500px;
   max-width: 500px;
   min-height: 100%;
   max-height: 100%;
   position: relative;
-}
 
+  @media screen and (max-width: 500px) {
+    min-width: 100vw;
+  }
+}
 </style>
