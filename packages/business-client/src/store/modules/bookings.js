@@ -4,14 +4,16 @@ const state = () => ({
   bookings: null,
   bookingsCalendarEvents: null,
   bookingsForDate: null,
-  currentBooking: null
+  currentBooking: null,
+  createdBooking: null
 })
 
 const getters = {
   bookings: (store) => store.bookings,
   bookingsCalendarEvents: (store) => store.bookingsCalendarEvents,
   bookingsForDate: (store) => store.bookingsForDate,
-  currentBooking: (store) => store.currentBooking
+  currentBooking: (store) => store.currentBooking,
+  createdBooking: (store) => store.createdBooking
 }
 
 const actions = {
@@ -55,11 +57,12 @@ const actions = {
       })()
     })
   },
-  createBooking({ commit }, booking ) {
+  createBooking({ commit }, booking) {
     return new Promise((resolve, reject) => {
       ;(async () => {
         try {
-          await api.bookings.createBooking(booking)
+          const { data } = await api.bookings.createBooking(booking)
+          commit('updateCreatedBooking', data)
           resolve()
         } catch (err) {
           reject(err)
@@ -91,7 +94,10 @@ const mutations = {
   },
   updateCurrentBooking(state, payload) {
     state.currentBooking = payload
-  }
+  },
+  updateCreatedBooking(state, payload) {
+    state.createdBooking = payload
+  },
 }
 
 export default {

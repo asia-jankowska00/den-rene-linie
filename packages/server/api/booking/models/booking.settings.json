@@ -63,11 +63,12 @@
     "frequencyType": {
       "type": "enumeration",
       "enum": [
+        "one_time",
         "daily",
-        "on_weekends",
         "weekly",
         "monthly",
-        "yearly"
+        "yearly",
+        "on_weekends"
       ]
     },
     "frequencyDurationAmount": {

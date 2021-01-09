@@ -16,7 +16,8 @@
       "required": true
     },
     "isCompleted": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "description": {
       "type": "text"

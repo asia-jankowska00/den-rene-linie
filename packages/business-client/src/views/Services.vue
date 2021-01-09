@@ -21,7 +21,10 @@
               <b-button
                 href="#"
                 class="card-footer-item"
-                @click.native="toggleServiceModal(service)"
+                @click.native="
+                  toggleServiceModal()
+                  updateSelectedService(service)
+                "
               >
                 View
               </b-button>
@@ -31,7 +34,7 @@
       </div>
     </div>
     <b-modal
-      v-if="modalData"
+      v-if="selectedService"
       v-model="isServiceModalActive"
       has-modal-card
       :destroy-on-hide="false"
@@ -39,43 +42,67 @@
       aria-modal
     >
       <template>
-        <ServiceModal :title="modalData.name" @close="toggleServiceModal">
-          <p>{{ modalData.description }}</p>
+        <ServiceModal
+          :title="selectedService.name"
+          @close="toggleServiceModal"
+          @confirm="
+            toggleBookingCheckoutModal()
+            toggleServiceModal()
+          "
+        >
+          <p>{{ selectedService.description }}</p>
           <ul>
-            <li v-for="task in modalData.serviceTasks" :key="task._id">{{ task.name }}</li>
+            <li v-for="task in selectedService.serviceTasks" :key="task._id">{{ task.name }}</li>
           </ul>
         </ServiceModal>
+      </template>
+    </b-modal>
+    <b-modal
+      v-model="isBookingCheckoutModalActive"
+      has-modal-card
+      :destroy-on-hide="false"
+      aria-role="dialog"
+      aria-modal
+    >
+      <template>
+        <BookingCheckoutModal @close="toggleBookingCheckoutModal"></BookingCheckoutModal>
       </template>
     </b-modal>
   </section>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import ServiceModal from '@/components/ServiceModal.vue'
+import BookingCheckoutModal from '@/components/BookingCheckoutModal.vue'
 
 export default {
   name: 'Services',
   components: {
-    ServiceModal
+    ServiceModal,
+    BookingCheckoutModal
   },
   data() {
     return {
       isServiceModalActive: false,
-      modalData: null
+      isBookingCheckoutModalActive: false
     }
   },
   computed: {
-    ...mapGetters('services', ['services'])
+    ...mapGetters('services', ['services']),
+    ...mapGetters('services', ['selectedService'])
   },
   mounted() {
     this.getServices()
   },
   methods: {
     ...mapActions('services', ['getServices']),
-    toggleServiceModal(data) {
-      this.modalData = data
+    ...mapMutations('services', ['updateSelectedService']),
+    toggleServiceModal() {
       this.isServiceModalActive = !this.isServiceModalActive
+    },
+    toggleBookingCheckoutModal() {
+      this.isBookingCheckoutModalActive = !this.isBookingCheckoutModalActive
     }
   }
 }

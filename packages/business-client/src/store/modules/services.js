@@ -1,11 +1,13 @@
 import api from '../../api/api'
 
 const state = () => ({
-  services: null
+  services: null,
+  selectedService: null
 })
 
 const getters = {
-  services: (store) => store.services
+  services: (store) => store.services,
+  selectedService: (store) => store.selectedService
 }
 
 const actions = {
@@ -21,13 +23,16 @@ const actions = {
         }
       })()
     })
-  }
+  },
 }
 
 
 const mutations = {
   updateServices(state, payload) {
     state.services = payload
+  },
+  updateSelectedService(state, payload) {
+    state.selectedService = payload
   }
 }
 

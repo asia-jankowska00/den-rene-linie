@@ -57,5 +57,8 @@ export default {
   },
   services: {
     getServices: () => axios.get(`${baseUrl}/services`, config())
+  },
+  tasks: {
+    createTask: (task) => axios.post(`${baseUrl}/tasks`, task, config()),
   }
 }
