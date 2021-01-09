@@ -16,12 +16,10 @@ Vue.component('vue-fontawesome', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
-const baseUrl = 'http://localhost:1337'
-
 Vue.mixin({
   data() {
     return {
-      placeholderAvatar: `${baseUrl}/uploads/Portrait_Placeholder_b9c75025d0.png`
+      placeholderAvatar: `https://res.cloudinary.com/den-rene-linie/image/upload/v1610229276/Portrait_Placeholder_238e4f79b7.png`
     }
   },
   methods: {
