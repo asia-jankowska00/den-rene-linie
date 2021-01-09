@@ -1,5 +1,5 @@
 <template>
-  <router-link to="bookings/1" class="card content is-flex is-flex-direction-column">
+  <router-link :to="'bookings/'+id" class="card content is-flex is-flex-direction-column">
     <div class="is-flex is-flex-direction-row is-justify-content-space-between">
       <div class="image">
         <img
@@ -13,7 +13,7 @@
         <strong>
           <p class="is-flex is-flex-direction-row is-justify-content-space-between">
             <span>{{ client }}</span>
-            <span>{{ startHour }}-{{ endHour }}</span>
+            <span>{{ startDate }}-{{ endDate }}</span>
           </p>
         </strong>
         <small>Address: {{ address }}</small>
@@ -30,7 +30,12 @@
 <script>
 export default {
   name: 'BookingItem',
-  props: ['image', 'client', 'startHour', 'endHour', 'address']
+  props: ['id', 'image', 'client', 'startDate', 'endDate', 'address'],
+  data(){
+    return{
+      
+    }
+  }
 }
 </script>
 

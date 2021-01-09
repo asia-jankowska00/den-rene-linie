@@ -25,7 +25,7 @@
       <h3>Service name</h3>
       <div class="content">
         <ul>
-          <TaskItem v-for="(t, index) in tasks" :key="index" :task="'HOLDER'" />
+          <TaskItem />
         </ul>
       </div>
       <h3>Clients note</h3>
@@ -46,7 +46,7 @@ export default {
   props: ['image', 'client', 'startHour', 'endHour', 'address'],
   data() {
     return {
-      tasks: 5
+
     }
   }
 }
