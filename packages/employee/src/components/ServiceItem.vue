@@ -4,7 +4,7 @@
       <img class="image" :src="image" />
     </div>
     <div class="content">
-      <p class="title is-5">Service/ Guide name</p>
+      <p class="title is-5">{{title}}</p>
     </div>
     <footer class="card-footer">
       <a href="#" class="card-footer-item">View</a>
@@ -15,7 +15,7 @@
 <script>
 export default {
   name: 'ServiceItem',
-  props: ['image']
+  props: ['image', 'title']
 }
 </script>
 
