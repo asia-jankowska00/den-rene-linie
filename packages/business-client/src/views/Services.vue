@@ -11,11 +11,11 @@
           class="column is-half"
         >
           <div class="card">
-            <div class="image is-16by9">
-              <img class="image" :src="formatImageUrl(service.image[0].url)" />
+            <div class="is-16by9 is-flex is-justify-content-center">
+              <img class="image is-64x64 is-centered" :src="service.image[0].url" />
             </div>
             <div class="card-content">
-              <p class="title is-5">{{ service.name }}</p>
+              <p class="title is-5 has-text-centered">{{ service.name }}</p>
             </div>
             <footer class="card-footer">
               <b-button
