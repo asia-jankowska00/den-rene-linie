@@ -8,7 +8,7 @@
             <span>Bookings</span>
           </a>
         </router-link>
-        <router-link tag="li" to="/dashboard/services" active-class="is-active" exact>
+        <router-link tag="li" to="/dashboard/guides" active-class="is-active" exact>
           <a class="is-flex-direction-column">
             <b-icon pack="fas" icon="address-book" />
             <span>Guides</span>
@@ -31,6 +31,7 @@ export default { name: 'BarBottom' }
 
 <style lang="scss">
 .bar-bottom {
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -38,5 +39,9 @@ export default { name: 'BarBottom' }
 
 .b-tabs .tab-content {
   padding: 0;
+}
+
+.tabs {
+  background: #ffffff;
 }
 </style>
