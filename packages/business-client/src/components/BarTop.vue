@@ -21,10 +21,10 @@
         </li>
       </ul>
     </div>
-    <b-sidebar type="is-light" v-model="openProfile" fullheight overlay>
+    <b-sidebar v-model="openProfile" type="is-light" fullheight overlay>
       <Profile />
     </b-sidebar>
-    <b-sidebar type="is-light"  v-model="openChat" fullheight fullwidth overlay right>
+    <b-sidebar v-model="openChat" type="is-light"  fullheight fullwidth overlay right>
       <Chat @close="openChat = !openChat" />
     </b-sidebar>
   </div>
