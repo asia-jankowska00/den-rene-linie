@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
-import Services from '../views/Services.vue'
+import Guides from '../views/Guides.vue'
 import Bookings from '../views/Bookings.vue'
 import Booking from '../views/Booking.vue'
 import Timesheets from '../views/Timesheets.vue'
@@ -34,9 +34,9 @@ const routes = [
     component: Dashboard,
     children: [
       {
-        path: 'services',
-        name: 'Services',
-        component: Services
+        path: 'guides',
+        name: 'Guides',
+        component: Guides
       },
       {
         path: 'bookings',
