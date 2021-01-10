@@ -137,16 +137,16 @@
           </b-field>
           <b-field>
             {{
-              selectedService.clientNote ? selectedService.clientNote : 'No special instructions'
+              newBooking.clientNote ? newBooking.clientNote : 'No special instructions'
             }}
           </b-field>
           <hr />
           <h4 class="subtitle">Timeframe details</h4>
           <b-field label="Start date">
-            {{ formatDateTime(selectedService.startDate) }}
+            {{ formatDateTime(newBooking.startDate) }}
           </b-field>
           <b-field label="End date">
-            {{ formatDateTime(selectedService.endDate) }}
+            {{ formatDateTime(newBooking.endDate) }}
           </b-field>
           <b-field>Personal meeting: {{ newBooking.meeting ? 'Yes' : 'No' }}</b-field>
           <hr />
