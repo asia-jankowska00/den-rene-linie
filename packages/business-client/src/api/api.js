@@ -46,7 +46,7 @@ export default {
     getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
     getBookingsByUser: (userId) => axios.get(`${baseUrl}/bookings?client._id=${userId}`, config()),
     getBookingsForDate: (dayStart, dayEnd) =>
-      axios.get(`${baseUrl}/bookings?status_ne=pending&${dayQuery(dayStart, dayEnd)}`, config()),
+      axios.get(`${baseUrl}/bookings?${dayQuery(dayStart, dayEnd)}`, config()),
     updateBooking: (bookingId, data) => axios.put(`${baseUrl}/bookings/${bookingId}`, data, config()),
     createBooking: (booking) => axios.post(`${baseUrl}/bookings`, booking, config())
   },
