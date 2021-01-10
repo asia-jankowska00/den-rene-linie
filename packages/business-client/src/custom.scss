@@ -1,0 +1,22 @@
+@import '~bulma/sass/utilities/_all';
+
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@600&family=Open+Sans&display=swap');
+
+$datepicker-radius: 0;
+$datepicker-shadow: none;
+$primary: #275a64;
+$link: #00b29f;
+
+$family-sans-serif: 'Open Sans', BlinkMacSystemFont, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica', 'Arial',
+  sans-serif;
+$family-primary: $family-sans-serif;
+$family-secondary: 'Hind', $family-sans-serif;
+$body-family: $family-primary;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $family-secondary;
+}
+
+@import '~bulma';
+@import '~buefy/src/scss/buefy';
