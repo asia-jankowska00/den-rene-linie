@@ -1,7 +1,10 @@
 <template>
-  <div v-if="user && user.role.type === 'employee'">
+  <div
+    v-if="user && user.role.type === 'employee'"
+    class="wrapper is-flex is-flex-direction-column"
+  >
     <BarTop />
-    <router-view class="content view" />
+    <router-view class="content p-5" />
     <BarBottom />
   </div>
 </template>
@@ -44,9 +47,7 @@ export default {
 
 <style>
 .content {
-  padding: 10px;
-}
-.view {
-  padding-bottom: 3.5rem;
+  height: 100%;
+  flex: 1 !important;
 }
 </style>
