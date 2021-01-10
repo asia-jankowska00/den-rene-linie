@@ -1,5 +1,5 @@
 <template>
-  <div class="profile is-flex is-flex-direction-column">
+  <div class="profile is-flex is-flex-direction-column p-5">
     <div class="media">
       <div class="image media-left">
         <img

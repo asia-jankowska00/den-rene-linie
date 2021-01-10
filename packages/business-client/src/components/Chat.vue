@@ -1,6 +1,20 @@
 <template>
   <div class="is-flex is-flex-direction-column is-justify-content-space-between">
+    <a class="delete is-large" @click="$emit('close')"></a>
     <div class="messages-container p-5">
+      <div>
+        <div class="media">
+          <div class="media-left">
+            <div class="image">
+              <img class="image is-rounded is-64x64" :src="drlAvatar" />
+            </div>
+          </div>
+          <div class="media-content box">
+            <p class="my-4">Have you checked our FAQ yet?</p>
+            <b-button class="is-primary">FAQ</b-button>
+          </div>
+        </div>
+      </div>
       <div
         v-for="(message, index) in messages"
         :key="index"
@@ -12,7 +26,7 @@
             <div class="image">
               <img
                 class="image is-rounded is-64x64"
-                :src="message.sender.avatar || placeholderAvatar"
+                :src="message.sender.avatar ? message.sender.avatar.url : placeholderAvatar"
               />
             </div>
           </div>
@@ -29,7 +43,7 @@
             <div class="image">
               <img
                 class="image is-rounded is-64x64"
-                :src="message.sender.avatar || placeholderAvatar"
+                :src="message.sender.avatar ? message.sender.avatar.url : placeholderAvatar"
               />
             </div>
           </div>
@@ -37,11 +51,11 @@
       </div>
     </div>
     <div
-      class="actions is-flex is-flex-direction-row is-fullwidth is-justify-content-space-between is-align-items-center"
+      class="textbox-container actions is-flex is-flex-direction-row is-fullwidth is-justify-content-space-between is-align-items-center"
     >
       <b-button rounded icon-right="plus" />
-      <b-field rounded>
-        <b-input v-model="newMessage.text" placeholder="Type..." rounded></b-input>
+      <b-field class="chat-input m-0" rounded>
+        <b-input v-model="newMessage.text" placeholder="Type your message" rounded></b-input>
       </b-field>
       <b-button rounded icon-right="arrow-right" @click="sendMessage" />
     </div>
@@ -108,9 +122,17 @@ export default {
 
 <style>
 .messages-container {
-  max-height: 70vh;
+  max-height: 90vh;
   width: 100%;
   overflow-y: scroll;
+}
+.textbox-container {
+  max-height: 10vh;
+  width: 100%;
+}
+
+.chat-input {
+  flex: 1;
 }
 
 .media-right {

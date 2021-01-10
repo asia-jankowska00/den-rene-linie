@@ -1,31 +1,66 @@
 <template>
-  <div class="tabs is-toggle is-fullwidth">
-    <ul>
-      <router-link tag="li" to="/dashboard/profile" active-class="is-active" exact>
-        <a class="is-flex-direction-column">
-          <b-icon pack="fas" icon="user-cog" />
-          <span>Profile</span>
-        </a>
-      </router-link>
-      <li>
-        <a class="logo">
-          <span>logo</span>
-        </a>
-      </li>
-      <router-link tag="li" to="/dashboard/chat" active-class="is-active" exact>
-        <a class="is-flex-direction-column">
-          <b-icon pack="fas" icon="comments" />
-          <span>Chat</span>
-        </a>
-      </router-link>
-    </ul>
+  <div>
+    <div class="tabs is-toggle is-fullwidth">
+      <ul>
+        <li active-class="is-active" eact>
+          <a class="is-flex-direction-column" @click="openProfile = !openProfile">
+            <b-icon pack="fas" icon="user-cog" />
+            <span>Profile</span>
+          </a>
+        </li>
+        <li>
+          <a class="logo">
+            <span>logo</span>
+          </a>
+        </li>
+        <li active-class="is-active" @click="openChat = !openChat">
+          <a class="is-flex-direction-column">
+            <b-icon pack="fas" icon="comments" />
+            <span>Chat</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <b-sidebar type="is-light" v-model="openProfile" fullheight overlay>
+      <Profile />
+    </b-sidebar>
+    <b-sidebar type="is-light"  v-model="openChat" fullheight fullwidth overlay right>
+      <Chat @close="openChat = !openChat" />
+    </b-sidebar>
   </div>
 </template>
 
 <script>
-export default { name: 'BarTop' }
+import { mapActions, mapGetters } from 'vuex'
+import Profile from '@/components/Profile'
+import Chat from '@/components/Chat'
+
+export default {
+  name: 'BarTop',
+  components: { Profile, Chat },
+  data() {
+    return {
+      openProfile: false,
+      openChat: false
+    }
+  },
+  computed: {
+    ...mapGetters('user', ['user'])
+  },
+  methods: {
+    ...mapActions('user', ['logout']),
+    logoutUser: function () {
+      this.logout().then(() => {
+        this.$router.push('/')
+      })
+    }
+  }
+}
 </script>
 
-<style>
-
+<style scoped lang="scss">
+/deep/ .sidebar-content {
+  max-height: 100vh !important;
+  max-width: 100vw !important;
+}
 </style>
