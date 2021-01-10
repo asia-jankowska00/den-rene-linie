@@ -35,7 +35,6 @@
         "pending",
         "dateApproved",
         "dateDeclined",
-        "quoteAwaiting",
         "quoteApproved",
         "quoteDeclined",
         "paid",
