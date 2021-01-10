@@ -4,7 +4,7 @@ const state = () => ({
   bookings: null,
   bookingsCalendarEvents: null,
   bookingsForDate: null,
-  currentBooking: null,
+  selectedBooking: null,
   createdBooking: null
 })
 
@@ -12,7 +12,7 @@ const getters = {
   bookings: (store) => store.bookings,
   bookingsCalendarEvents: (store) => store.bookingsCalendarEvents,
   bookingsForDate: (store) => store.bookingsForDate,
-  currentBooking: (store) => store.currentBooking,
+  selectedBooking: (store) => store.selectedBooking,
   createdBooking: (store) => store.createdBooking
 }
 
@@ -92,8 +92,11 @@ const mutations = {
   updateBookingsForDate(state, payload) {
     state.bookingsForDate = payload
   },
-  updateCurrentBooking(state, payload) {
-    state.currentBooking = payload
+  updateSelectedBooking(state, payload) {
+    state.selectedBooking = payload
+  },
+  clearSelectedBooking(state) {
+    state.selectedBooking = null
   },
   updateCreatedBooking(state, payload) {
     state.createdBooking = payload
