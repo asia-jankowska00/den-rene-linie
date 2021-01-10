@@ -1,23 +1,18 @@
 <template>
-  <article class="card">
+  <article v-if="selectedBooking" class="card">
     <section class="client content is-flex is-flex-direction-column">
       <div class="is-flex is-flex-direction-row is-justify-content-space-between">
-        <div class="image">
-          <img
-            class="image is-rounded is-64x64"
-            v-if="!image"
-            src="https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png"
-          />
-          <img class="image is-rounded is-64x64" v-else :src="image" />
-        </div>
         <div class="container">
           <strong>
             <p class="is-flex is-flex-direction-row is-justify-content-space-between">
-              <span>{{ client }}Clients name</span>
-              <span>{{ startHour }}20:00-00:00{{ endHour }}</span>
+              <span>{{ formatName(selectedBooking.client) }}</span>
+              <span>
+                {{ formatDateTime(selectedBooking.startDate) }} -
+                {{ formatDateTime(selectedBooking.endDate) }}
+              </span>
             </p>
           </strong>
-          <small>Address: {{ address }}</small>
+          <small>Address: {{ selectedBooking.address }}</small>
         </div>
       </div>
     </section>
@@ -25,12 +20,17 @@
       <h3>Service name</h3>
       <div class="content">
         <ul>
-          <TaskItem />
+          <li v-for="task in selectedBooking.tasks" :key="task._id">
+            <div class="field">
+              <b-checkbox v-model="task.isComplete">{{ task.name }}</b-checkbox>
+            </div>
+          </li>
         </ul>
       </div>
-      <h3>Clients note</h3>
-      <div class="content">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, minus.</p>
+
+      <div v-if="selectedBooking.clientNote" class="content">
+        <h4>Client's note</h4>
+        <p>{{ selectedBooking.clientNote }}</p>
       </div>
     </section>
     <Stopwatch />
@@ -38,16 +38,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Stopwatch from '../components/Stopwatch'
-import TaskItem from '../components/TaskItem'
+
 export default {
   name: 'Booking',
-  components: { Stopwatch, TaskItem },
-  props: ['image', 'client', 'startHour', 'endHour', 'address'],
-  data() {
-    return {
-
-    }
+  components: {
+    Stopwatch
+  },
+  computed: {
+    ...mapGetters('bookings', ['selectedBooking'])
+  },
+  mounted() {
+    this.getSelectedBooking(this.$route.params.id)
+  },
+  methods: {
+    ...mapActions('bookings', ['getSelectedBooking'])
   }
 }
 </script>

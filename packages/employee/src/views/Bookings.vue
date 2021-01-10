@@ -10,67 +10,82 @@
     ></b-datepicker>
 
     <div
-      class="content hero is-fullwidth is-success is-flex-direction-row is-justify-content-space-between"
+      class="content p-2 hero is-fullwidth is-primary is-flex-direction-row is-justify-content-space-between"
     >
-      <span>{{nameOfDay}} | {{dateMonth}}</span>
-      <span>{{year}}</span>
+      <span>{{ nameOfDay }} | {{ dateMonth }}</span>
+      <span>{{ year }}</span>
     </div>
 
-    <BookingItem
-      v-for="b in bookingsForDate"
-      :id="b._id"
-      :key="b._id"
-      :client="b.client.firstName"
-      :startDate="formatDuration(b.startDate)"
-      :endDate="formatDuration(b.endDate)"
-      :address="b.address"
-    />
+    <router-link
+      v-for="booking in bookingsForDate"
+      :key="booking._id"
+      :to="'bookings/' + booking._id"
+      class="card content is-flex is-flex-direction-column"
+    >
+      <div class="is-flex is-flex-direction-row is-justify-content-space-between">
+        <div class="container">
+          <strong>
+            <p class="is-flex is-flex-direction-row is-justify-content-space-between">
+              <span>{{ formatName(booking.client) }}</span>
+              <span>
+                {{ formatDateTime(booking.startDate) }}-{{ formatDateTime(booking.endDate) }}
+              </span>
+            </p>
+          </strong>
+          <small>Address: {{ booking.address }}</small>
+        </div>
+      </div>
+      <div class="is-align-self-flex-end">
+        <a>
+          <b-icon pack="fas" icon="arrow-right" />
+        </a>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 import Tabs from '../components/Tabs'
-import BookingItem from '../components/BookingItem'
 import { mapGetters, mapActions } from 'vuex'
 import dayjs from 'dayjs'
 
 export default {
   name: 'Bookings',
-  components: { BookingItem, Tabs },
+  components: { Tabs },
   data() {
     return {
       selectedDate: new Date(),
       nameOfDay: dayjs(this.selectedDate).format('dddd'),
-      dateMonth: dayjs(this.selectedDate). format('D MMMM'),
-      year: dayjs(this.selectedDate). format('YYYY')
+      dateMonth: dayjs(this.selectedDate).format('D MMMM'),
+      year: dayjs(this.selectedDate).format('YYYY')
     }
   },
   computed: {
     ...mapGetters('user', ['user']),
     ...mapGetters('bookings', ['bookings']),
     ...mapGetters('bookings', ['bookingsCalendarEvents']),
-    ...mapGetters('bookings', ['bookingsForDate']),
+    ...mapGetters('bookings', ['bookingsForDate'])
   },
   watch: {
     selectedDate(newDate) {
       const endDate = dayjs(newDate).add(1, 'day').toDate()
-      this.getBookingsForDate({userId:this.user._id, dayStart: newDate, dayEnd: endDate })
+      this.getBookingsForDate({ userId: this.user._id, dayStart: newDate, dayEnd: endDate })
       this.nameOfDay = dayjs(this.selectedDate).format('dddd')
-      this.dateMonth = dayjs(this.selectedDate). format('D MMMM')
-      this.year = dayjs(this.selectedDate). format('YYYY')
+      this.dateMonth = dayjs(this.selectedDate).format('D MMMM')
+      this.year = dayjs(this.selectedDate).format('YYYY')
     }
   },
-  mounted(){
+  mounted() {
     this.getBookingsByUser(this.user._id),
-    this.getBookingsForDate({
-      userId:this.user._id,
-      dayStart: new Date(),
-      dayEnd: dayjs(new Date()).add(1, 'day').toDate()
-    })
+      this.getBookingsForDate({
+        userId: this.user._id,
+        dayStart: new Date(),
+        dayEnd: dayjs(new Date()).add(1, 'day').toDate()
+      })
   },
   methods: {
     ...mapActions('bookings', ['getBookingsByUser']),
-    ...mapActions('bookings', ['getBookingsForDate']),
+    ...mapActions('bookings', ['getBookingsForDate'])
   }
 }
 </script>
@@ -80,7 +95,6 @@ export default {
   text-align: center;
 }
 div.hero {
-  z-index: 99;
   position: sticky;
   top: 0;
   left: 0;

@@ -4,16 +4,18 @@ const state = () => ({
   bookings: null,
   bookingsCalendarEvents: null,
   bookingsForDate: null,
+  selectedBooking: null
 })
 
 const getters = {
   bookings: (store) => store.bookings,
   bookingsCalendarEvents: (store) => store.bookingsCalendarEvents,
   bookingsForDate: (store) => store.bookingsForDate,
+  selectedBooking: (store) => store.selectedBooking
 }
 
 const actions = {
-  getBookingsForDate({ commit }, {userId, dayStart, dayEnd }) {
+  getBookingsForDate({ commit }, { userId, dayStart, dayEnd }) {
     return new Promise((resolve, reject) => {
       ;(async () => {
         try {
@@ -39,7 +41,20 @@ const actions = {
         }
       })()
     })
-  }
+  },
+  getSelectedBooking({ commit }, bookingId) {
+    return new Promise((resolve, reject) => {
+      ;(async () => {
+        try {
+          const { data } = await api.bookings.getBooking(bookingId)
+          commit('updateSelectedBooking', data)
+          resolve()
+        } catch (err) {
+          reject(err)
+        }
+      })()
+    })
+  },
 }
 
 const mutations = {
@@ -61,6 +76,12 @@ const mutations = {
   },
   updateBookingsForDate(state, payload) {
     state.bookingsForDate = payload
+  },
+  updateSelectedBooking(state, payload) {
+    state.selectedBooking = payload
+  },
+  clearSelectedBooking(state) {
+    state.selectedBooking = null
   }
 }
 

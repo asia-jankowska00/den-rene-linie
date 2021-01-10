@@ -34,6 +34,16 @@ const userMessagesQuery = (id) => {
   })
 }
 
+const stopwatchesQuery = (fromDate, toDate) => {
+  return qs.stringify({
+    _where: {
+      _or: [
+        [{ startDate_gte: fromDate }, { startDate_lte: toDate }],
+        [{ endDate_gte: fromDate }, { endDate_lte: toDate }]
+      ]
+    }
+  })
+}
 
 export default {
   auth: {
@@ -50,6 +60,7 @@ export default {
       axios.get(`${baseUrl}/messages?${userMessagesQuery(userId)}`, config())
   },
   bookings: {
+    getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
     getBookingsByUser: (userId) => axios.get(`${baseUrl}/bookings?assignedEmployees._id=${userId}`, config()),
     getBookingsForDate: (userId, dayStart, dayEnd) =>
       axios.get(`${baseUrl}/bookings?assignedEmployees._id=${userId}&${dayQuery(dayStart, dayEnd)}`, config()),
@@ -57,16 +68,17 @@ export default {
   guides: {
     getGuides: () => axios.get(`${baseUrl}/guides`, config())
   },
+  stopwatches: {
+    getStopwatches: (employeeId, fromDate, toDate) =>
+      axios.get(`${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`, config())
+  },
 
   // Edit *Bookings* Api to fit Employee
   /*bookings: {
     getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
   },
-  // Edit *stopwatches* Api to fit Employee
-  stopwatches: {
-    getStopwatches: (employeeId, fromDate, toDate) =>
-      axios.get(`${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`, config())
-  },
+  Edit *stopwatches* Api to fit Employee
+
 
   // Notifications to be added*/
 }
