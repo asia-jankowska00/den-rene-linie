@@ -6,7 +6,6 @@ import Register from '../views/Register.vue'
 import Dashboard from '../views/Dashboard.vue'
 import Guides from '../views/Guides.vue'
 import Bookings from '../views/Bookings.vue'
-import Booking from '../views/Booking.vue'
 import Timesheets from '../views/Timesheets.vue'
 import Notifications from '../views/Notifications.vue'
 
@@ -42,11 +41,6 @@ const routes = [
         path: 'bookings',
         name: 'Bookings',
         component: Bookings        
-      },
-      {
-        path: 'bookings/:id',
-        name: 'Booking',
-        component: Booking
       },
       {
         path: 'timesheets',

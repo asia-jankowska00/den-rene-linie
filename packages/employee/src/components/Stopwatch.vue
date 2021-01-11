@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Stopwatch',
   data() {
@@ -17,25 +19,43 @@ export default {
       timer: undefined
     }
   },
-  methods: {
-    start() {
-      this.timer = setInterval(() => {
-        this.elapsedTime += 1000
-      }, 1000)
-    },
-    stop() {
-      clearInterval(this.timer)
-    },
-    reset() {
-      this.elapsedTime = 0
-    }
-  },
   computed: {
+    ...mapGetters('user', ['user']),
+    ...mapGetters('bookings', ['selectedBooking']),
+    ...mapGetters('stopwatches', ['newStopwatch']),
     formattedElapsedTime() {
       const date = new Date(null)
       date.setSeconds(this.elapsedTime / 1000)
       const utc = date.toUTCString()
       return utc.substr(utc.indexOf(':') - 2, 8)
+    }
+  },
+  methods: {
+    ...mapActions('stopwatches', ['createStopwatch']),
+    ...mapActions('stopwatches', ['updateStopwatch']),
+    start() {
+      const newStopwatch = {
+        employee: this.user._id,
+        startDate: new Date(),
+        booking: this.selectedBooking._id
+      }
+      this.createStopwatch(newStopwatch)
+      this.timer = setInterval(() => {
+        this.elapsedTime += 1000
+      }, 1000)
+    },
+    stop() {
+      this.updateStopwatch({
+        stopwatchId: this.newStopwatch._id,
+        data: {
+          endDate: new Date()
+        }
+      })
+      clearInterval(this.timer)
+      this.reset()
+    },
+    reset() {
+      this.elapsedTime = 0
     }
   }
 }

@@ -30,7 +30,12 @@ const employerId = '5feb3447214c2f2d14529e1b'
 
 const userMessagesQuery = (id) => {
   return qs.stringify({
-    _where: { _or: [[{ receiver: { _id: id } },  { sender: { _id: employerId } }], [{ receiver: { _id: employerId } }, { sender: { _id: id } }]] }
+    _where: {
+      _or: [
+        [{ receiver: { _id: id } }, { sender: { _id: employerId } }],
+        [{ receiver: { _id: employerId } }, { sender: { _id: id } }]
+      ]
+    }
   })
 }
 
@@ -61,24 +66,24 @@ export default {
   },
   bookings: {
     getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
-    getBookingsByUser: (userId) => axios.get(`${baseUrl}/bookings?assignedEmployees._id=${userId}`, config()),
+    getBookingsByUser: (userId) =>
+      axios.get(`${baseUrl}/bookings?assignedEmployees._id=${userId}`, config()),
     getBookingsForDate: (userId, dayStart, dayEnd) =>
-      axios.get(`${baseUrl}/bookings?assignedEmployees._id=${userId}&${dayQuery(dayStart, dayEnd)}`, config()),
+      axios.get(
+        `${baseUrl}/bookings?assignedEmployees._id=${userId}&${dayQuery(dayStart, dayEnd)}`,
+        config()
+      )
   },
   guides: {
     getGuides: () => axios.get(`${baseUrl}/guides`, config())
   },
   stopwatches: {
     getStopwatches: (employeeId, fromDate, toDate) =>
-      axios.get(`${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`, config())
-  },
-
-  // Edit *Bookings* Api to fit Employee
-  /*bookings: {
-    getBooking: (bookingId) => axios.get(`${baseUrl}/bookings/${bookingId}`, config()),
-  },
-  Edit *stopwatches* Api to fit Employee
-
-
-  // Notifications to be added*/
+      axios.get(
+        `${baseUrl}/stopwatches?employee._id=${employeeId}&${stopwatchesQuery(fromDate, toDate)}`,
+        config()
+      ),
+    createStopwatch: (stopwatch) => axios.post(`${baseUrl}/stopwatches`, stopwatch, config()),
+    updateStopwatch: (stopwatchId, data) => axios.put(`${baseUrl}/stopwatches/${stopwatchId}`, data, config()),
+  }
 }
