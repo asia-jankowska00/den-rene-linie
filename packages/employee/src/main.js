@@ -7,6 +7,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+dayjs.tz.setDefault('Europe/Copenhagen')
 
 library.add(fas)
 
@@ -20,8 +27,10 @@ Vue.config.productionTip = false
 Vue.mixin({
   data() {
     return {
-      placeholderAvatar: 'https://res.cloudinary.com/den-rene-linie/image/upload/v1610229276/Portrait_Placeholder_238e4f79b7.png',
-      drlAvatar: 'https://res.cloudinary.com/den-rene-linie/image/upload/v1610297871/Logo_b7e21cd3f1.png'
+      placeholderAvatar:
+        'https://res.cloudinary.com/den-rene-linie/image/upload/v1610229276/Portrait_Placeholder_238e4f79b7.png',
+      drlAvatar:
+        'https://res.cloudinary.com/den-rene-linie/image/upload/v1610297871/Logo_b7e21cd3f1.png'
     }
   },
   methods: {
@@ -35,7 +44,10 @@ Vue.mixin({
       return dayjs(date).format('DD/MM/YYYY, hh:mm')
     },
     formatDuration(date) {
-      return dayjs(date).format('HH:mm')
+      return dayjs(date).tz('Etc/GMT+0').format('HH:mm:ss')
+    },
+    formatElapsedTime(date) {
+      return dayjs(date).tz('Etc/GMT+0').format('HH:mm:ss')
     }
   }
 })

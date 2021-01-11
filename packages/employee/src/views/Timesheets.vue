@@ -1,16 +1,19 @@
 <template>
   <div>
     <Tabs />
-    <b-field horizontal label="From">
+    <div class="columns">
+    <b-field label="From" class="column is-half">
       <b-datepicker v-model="selectedStartDate" placeholder="Click to select..."></b-datepicker>
     </b-field>
-    <b-field horizontal label="To">
+    <b-field label="To" class="column is-half">
       <b-datepicker v-model="selectedEndDate" placeholder="Click to select..."></b-datepicker>
     </b-field>
-    <div class="control">
-      <button class="button" @click="getTimesheet">Get report</button>
     </div>
-    <div class="card p-5">
+    <div class="control is-flex is-justify-content-center">
+      <b-button class="is-primary" @click="getTimesheet">Get report</b-button>
+    </div>
+
+    <div v-if="stopwatches" class="card p-5">
       <div class="content is-flex is-flex-direction-column">
         <div class="is-fullwidth">
           <p class="title is-4">Total hours for selected range:</p>
@@ -89,4 +92,10 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.is-half {
+  width: 40%;
+  display: inline-block;
+}
+
+</style>
