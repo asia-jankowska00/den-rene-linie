@@ -1,7 +1,10 @@
 <template>
-  <div class="container is-flex is-justify-content-center">
-    <div class="is-flex mt-6 columns is-justify-content-center">
-      <div class="column is-flex is-flex-direction-column">
+  <div class="container is-flex is-justify-content-center is-align-items-center">
+    <div class="is-flex mt-6 columns is-justify-content-center card">
+      <div class="column is-flex is-flex-direction-column  p-6">
+        <b-image
+          src="https://res.cloudinary.com/den-rene-linie/image/upload/v1610400559/DRL_Full_Logo_Primery_Default_a3142aeaa5.png"
+        ></b-image>
         <div>
           <b-field label="Username">
             <b-input v-model="username"></b-input>
@@ -15,8 +18,8 @@
         </div>
       </div>
       <b-image
-        class="column"
-        src="https://expertphotography.com/wp-content/uploads/2019/11/Cute-Kitten-Picture-get-your-cat-to-look-at-the-camera.jpg"
+        class="column ml-5 splash  p-6"
+        src="https://res.cloudinary.com/den-rene-linie/image/upload/v1610400341/splash_17c9160fca.png"
       ></b-image>
     </div>
   </div>
@@ -65,4 +68,8 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.splash {
+  background: #f2f2f2;
+}
+</style>

@@ -16,16 +16,13 @@ export default {
 
 
 html {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 #app {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,
-    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
   min-height: 100vh;
   min-width: 100vw;
   display: flex;
-
 }
 </style>

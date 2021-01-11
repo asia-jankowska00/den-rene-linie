@@ -55,6 +55,10 @@ export default {
 .sidebar {
   flex: none;
   width: 17.5%;
+
+  @media screen and (min-width: 1920px) {
+    width: 14%;
+  }
 }
 
 .columns {

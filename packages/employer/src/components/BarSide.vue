@@ -1,5 +1,5 @@
 <template>
-  <b-sidebar position="static" class="is-fullheight sidebar" open>
+  <b-sidebar type="is-dark" position="static" class="is-fullheight sidebar" open>
     <div class="p-2 is-fullwidth">
       <b-menu class="is-custom-mobile">
         <b-menu-list>
@@ -111,7 +111,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .sidebar {
   min-height: 100%;
   width: inherit;
@@ -125,5 +125,17 @@ export default {
   box-shadow: none !important;
   height: 100%;
   width: 100% !important;
+  background: linear-gradient(#275a64, #5cc3b4) !important;
+}
+.b-sidebar .menu-list a {
+  color: white;
+}
+.b-sidebar .menu-list a:hover {
+  background: #275a64;
+}
+
+.b-sidebar .menu-list a.is-active {
+  background: transparent;
+  color: #5cc3b4;
 }
 </style>

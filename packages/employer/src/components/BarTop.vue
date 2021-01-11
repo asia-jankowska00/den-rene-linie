@@ -1,7 +1,10 @@
 <template>
-  <b-navbar class="has-background-light px-3">
+  <b-navbar class="p-3">
     <template slot="brand">
-      <b-navbar-item tag="router-link" to="/dashboard">LOGO</b-navbar-item>
+      <b-image
+        class="is-48x48"
+        src="https://res.cloudinary.com/den-rene-linie/image/upload/v1610401295/Logo_Primary_7e10a5239d.png"
+      ></b-image>
     </template>
 
     <template slot="end">
@@ -28,7 +31,9 @@
                 <b-button class="p-5" icon-left="bell">Notification&nbsp;settings</b-button>
                 <b-button class="p-5" icon-left="envelope">Change&nbsp;email</b-button>
                 <b-button class="p-5" icon-left="lock">Change&nbsp;password</b-button>
-                <b-button class="p-5" icon-left="user-plus">Create&nbsp;admin&nbsp;account</b-button>
+                <b-button class="p-5" icon-left="user-plus">
+                  Create&nbsp;admin&nbsp;account
+                </b-button>
                 <b-button class="p-5" icon-left="sign-out-alt">Log&nbsp;out</b-button>
               </div>
             </div>
@@ -43,4 +48,13 @@
 export default { name: 'BarTop' }
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.navbar {
+  background: linear-gradient(90deg, #275a64, #5cc3b4) !important;
+}
+
+.navbar .navbar-item,
+.navbar-link {
+  color: white !important;
+}
+</style>
