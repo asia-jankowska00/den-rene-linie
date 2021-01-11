@@ -85,5 +85,8 @@ export default {
       ),
     createStopwatch: (stopwatch) => axios.post(`${baseUrl}/stopwatches`, stopwatch, config()),
     updateStopwatch: (stopwatchId, data) => axios.put(`${baseUrl}/stopwatches/${stopwatchId}`, data, config()),
+  },
+  tasks: {
+    updateTask: (taskId, data) => axios.put(`${baseUrl}/tasks/${taskId}`, data, config()),
   }
 }

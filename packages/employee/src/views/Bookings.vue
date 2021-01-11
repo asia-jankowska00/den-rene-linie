@@ -64,7 +64,9 @@
           <b-field>
             <ul>
               <li class="task" v-for="task in selectedBooking.tasks" :key="task._id">
-                <b-checkbox v-model="task.isComplete">{{ task.name }}</b-checkbox>
+                <b-checkbox v-model="task.isCompleted" @click.native="updateTaskInBooking(task)">
+                  {{ task.name }}
+                </b-checkbox>
               </li>
             </ul>
           </b-field>
@@ -124,6 +126,7 @@ export default {
     ...mapActions('bookings', ['getBookingsForDate']),
     ...mapMutations('bookings', ['updateSelectedBooking']),
     ...mapMutations('bookings', ['clearSelectedBooking']),
+    ...mapActions('tasks', ['updateTask']),
     toggleBookingModal(booking) {
       if (booking) {
         this.updateSelectedBooking(booking)
@@ -131,6 +134,10 @@ export default {
         this.clearSelectedBooking()
       }
       this.isBookingModalActive = !this.isBookingModalActive
+    },
+    updateTaskInBooking(task) {
+      console.log(task)
+      this.updateTask({ taskId: task._id, data: { isCompleted: !task.isCompleted } })
     }
   }
 }

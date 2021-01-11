@@ -5,6 +5,7 @@ import bookings from './modules/bookings.js'
 import guides from './modules/guides.js'
 import messages from './modules/messages.js'
 import stopwatches from './modules/stopwatches.js'
+import tasks from './modules/tasks.js'
 
 Vue.use(Vuex)
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
     bookings,
     guides,
     messages,
-    stopwatches
+    stopwatches,
+    tasks
   }
 })
