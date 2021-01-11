@@ -30,7 +30,6 @@ const actions = {
         try {
           await api.messages.postMessage(message)
           const { data } = await api.messages.getUserMessages(message.sender)
-          console.log(data)
           commit('updateMessages', data)
           resolve()
         } catch (err) {
