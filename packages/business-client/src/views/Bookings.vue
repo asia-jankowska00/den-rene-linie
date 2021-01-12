@@ -1,45 +1,55 @@
 <template>
-  <div class="columns">
-    <div class="column">
+  <div>
+    <h2>Bookings</h2>
+    <div>
       <b-datepicker
         v-model="selectedDate"
         inline
         :events="bookingsCalendarEvents"
-        indicators="bars"
+        indicators="dots"
       ></b-datepicker>
 
-      <div
-        v-for="booking in bookingsForDate"
-        :key="booking._id"
-        class="card"
-        @click="toggleBookingModal(booking)"
-      >
-        <div class="card-content">
-          <div class="media">
-            <div class="media-left"></div>
-            <div class="media-content">
-              <p
-                v-for="employee in booking.assignedEmployees"
-                :key="employee._id"
-                class="title is-5"
-              >
-                {{ formatName(employee) }}
-              </p>
-              <p class="subtitle is-6">{{ booking.service.name }}</p>
-            </div>
-          </div>
+      <div class="bookings-container is-fullwidth">
 
-          <div class="content">
-            <br />
-            <time datetime="2016-1-1">{{ formatDateTime(booking.startDate) }}</time>
-            <br />
-            <time datetime="2016-1-1">{{ formatDateTime(booking.endDate) }}</time>
-            <hr />
-            <b-icon pack="fas" icon="phone"></b-icon>
-            <b-icon pack="fas" icon="comment-dots"></b-icon>
+        <div class="content hero is-fullwidth">
+          <span>{{ dateMonth }} {{ year }}</span>
+        </div>
+
+        <div
+          v-for="booking in bookingsForDate"
+          :key="booking._id"
+          class="card"
+          @click="toggleBookingModal(booking)"
+        >
+          <div class="card-content">
+            <div class="media">
+              <div class="media-left">
+                <div class="image is-48x48">
+                  <img class="image is-rounded" :src="placeholderAvatar"/>
+                </div>
+              </div>
+              <div class="media-content">
+                <p
+                  v-for="employee in booking.assignedEmployees"
+                  :key="employee._id"
+                  class="title is-5"
+                >
+                  {{ formatName(employee) }}
+                </p>
+              </div>
+            </div>
+
+            <div class="content">
+              <p class="subtitle is-6">{{ booking.service.name }}</p>
+              <b><time datetime="2016-1-1">{{ formatDuration(booking.startDate) }}</time> - <time datetime="2016-1-1">{{ formatDuration(booking.endDate) }}</time></b>
+              <hr />
+              <b-icon pack="fas" icon="phone"></b-icon>
+              <b-icon pack="fas" icon="comment-dots"></b-icon>
+            </div>
           </div>
         </div>
       </div>
+
       <b-modal
         v-if="selectedBooking"
         v-model="isBookingModalActive"
@@ -104,6 +114,8 @@ export default {
   data() {
     return {
       selectedDate: new Date(),
+      dateMonth: dayjs(this.selectedDate).format('D MMM'),
+      year: dayjs(this.selectedDate).format('YYYY'),
       isBookingModalActive: false
     }
   },
@@ -118,6 +130,8 @@ export default {
     selectedDate(newDate) {
       const endDate = dayjs(newDate).add(1, 'day').toDate()
       this.getBookingsForDate({ dayStart: newDate, dayEnd: endDate })
+      this.dateMonth = dayjs(this.selectedDate).format('D MMM')
+      this.year = dayjs(this.selectedDate).format('YYYY')
     }
   },
   mounted() {
@@ -147,9 +161,79 @@ export default {
 </script>
 
 <style scoped lang="scss">
-/deep/ .datepicker.control {
-  width: 100%;
+/deep/ .datepicker {
+  .dropdown {
+    width: 100%;
+    .dropdown-menu {
+      .dropdown-content {
+        background-color: transparent;
+
+        .dropdown-item {
+          .datepicker-header {
+            border: none;
+            padding: 0;
+            margin: 0;
+            .pagination {
+              flex-wrap: nowrap;
+              :nth-child(1) {
+                order: 1;
+              }
+              :nth-child(2) {
+                order: 3;
+              }
+              :nth-child(3) {
+                order: 2;
+              }
+              /deep/ .pagination-previous,
+              .pagination-next,
+              .pagination-link {
+                border-color: transparent;
+                color: white;
+                font-size: 1.6rem;
+                margin: 0;
+                padding: 0;
+                height: 64px;
+                width: 64px;
+
+                .has-text-primary {
+                  color: white !important;
+                }
+
+                /deep/ .pagination-list {
+                  .select select {
+                    border-color: transparent;
+                    background-color: transparent;
+                    color: white;
+                    &::after {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .datepicker-content {
+            /deep/ .datepicker-header {
+              .datepicker-cell {
+                color: #d9dbe9;
+              }
+            }
+            .datepicker-body {
+              .datepicker-cell {
+                font-weight: bold;
+                color: white;
+              }
+              .is-unselectable {
+                color: #d9dbe9;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 /deep/ .dropdown.dropdown-menu-animation.is-inline.is-active {
   display: inline-block !important;
   max-width: 100%;
@@ -175,5 +259,37 @@ export default {
   .events
   .event {
   padding: 0.2rem;
+}
+
+.bookings-container{
+  margin: 0 -1.5rem;
+  background-color: #FCFCFC;
+  border-radius: 30px 30px 0px 0px;
+  backdrop-filter: blur(30px);
+  padding:0 1.6rem;
+  .hero{
+    color: #6E7191;
+    font-weight: bold;
+    padding: 1.6rem 0 .8rem 0;
+    margin-bottom: 0;
+  }
+  .card{
+    background-color: white;
+    border: 1px solid rgba(220, 220, 220, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0px 1px 5px rgba(57, 57, 57, 0.1);
+    border-radius: 30px;
+    width: 100%; //64% if timeline on-side
+    margin: 0 0 0 auto;
+
+    .media{
+      margin-bottom: .8rem;
+    }
+    .content{
+      hr{
+        margin: .8rem 0;
+      }
+    }
+  }
 }
 </style>

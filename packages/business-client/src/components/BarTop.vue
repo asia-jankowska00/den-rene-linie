@@ -1,26 +1,26 @@
 <template>
-  <div>
-    <div class="tabs is-toggle is-fullwidth">
-      <ul>
-        <li active-class="is-active" eact>
-          <a class="is-flex-direction-column" @click="openProfile = !openProfile">
-            <b-icon pack="fas" icon="user-cog" />
-            <span>Profile</span>
-          </a>
-        </li>
-        <li>
-          <a class="logo">
-            <span>logo</span>
-          </a>
-        </li>
-        <li active-class="is-active" @click="openChat = !openChat">
-          <a class="is-flex-direction-column">
-            <b-icon pack="fas" icon="comments" />
-            <span>Chat</span>
-          </a>
-        </li>
-      </ul>
-    </div>
+  <div class="bar-top">
+    <ul class="nav is-flex is-flex-direction-row is-justify-content-space-between">
+      <li>
+        <button @click="openProfile = !openProfile">
+          <div class="image is-48x48">
+            <img class="image is-rounded" :src="user.avatar ? user.avatar.url : placeholderAvatar"/>
+          </div>
+          Settings
+        </button>
+      </li>
+      <li>
+        <div class="logo"></div>
+      </li>
+      <li>
+        <button @click="openChat = !openChat">
+          <div class="image is-48x48">
+            <b-icon size="is-medium" pack="fas" icon="comment-dots" />
+          </div>
+          Contact
+        </button>
+      </li>
+    </ul>
     <b-sidebar v-model="openProfile" type="is-light" fullheight overlay>
       <Profile />
     </b-sidebar>
@@ -58,9 +58,49 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+.bar-top{
+  .nav{
+    width: 100%;
+    padding: .8rem .8rem 0 .8rem;
+    li{
+      width: fit-content;
+      text-align: center;
+      &:nth-child(2){
+        width: 8rem;
+      }
+      button{
+        background-color: transparent;
+        text-align: center;
+        border: none;
+        color: rgba(217, 219, 233, .5);
+        .image{
+          background-color: #FCFCFC;
+          border-radius: 100%;
+          margin-bottom: 4px;
+          .icon{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: #275a64;
+          }
+        }
+      }
+      .logo{
+        background-image: url('../assets/DRLLogoNoText.svg');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        padding-bottom: 56.25%;
+      }
+    
+    }
+  }
+}
+
 /deep/ .sidebar-content {
-  max-height: 100vh !important;
-  max-width: 100vw !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
 }
 </style>
