@@ -1,25 +1,31 @@
 <template>
   <div class="bar-bottom">
-    <div class="tabs is-toggle is-fullwidth">
+    <div class="tabs is-toggle">
       <ul>
-        <router-link tag="li" to="/dashboard/services" active-class="is-active" exact>
-          <a class="is-flex-direction-column">
-            <b-icon pack="fas" icon="box-open" />
-            <span>Services</span>
-          </a>
-        </router-link>
-        <router-link tag="li" to="/dashboard/bookings" active-class="is-active" exact>
-          <a class="is-flex-direction-column">
-            <b-icon pack="fas" icon="calendar-check" />
-            <span>Bookings</span>
-          </a>
-        </router-link>
-        <router-link tag="li" to="/dashboard/notifications" active-class="is-active" exact>
-          <a class="is-flex-direction-column">
-            <b-icon pack="fas" icon="bell" />
-            <span>Notifications</span>
-          </a>
-        </router-link>
+        <li>
+          <router-link tag="a" to="/dashboard/services">
+            <div>
+              <b-icon size="is-medium" pack="fas" icon="broom" />
+            </div>
+            Services
+          </router-link >
+        </li>
+        <li>
+          <router-link tag="a" to="/dashboard/bookings">
+            <div>
+              <b-icon size="is-medium" pack="fas" icon="calendar-alt" />
+            </div>
+            Bookings
+          </router-link >
+        </li>
+        <li>
+          <router-link tag="a" to="/dashboard/notifications">
+            <div>
+              <b-icon size="is-medium" pack="fas" icon="bell" />
+            </div>
+            Notifications
+          </router-link >
+        </li>
       </ul>
     </div>
   </div>
@@ -29,15 +35,37 @@
 export default { name: 'BarBottom' }
 </script>
 
-<style>
-.bar-bottom {
-
-  bottom: 0;
-  left: 0;
-  width: 100%;
-}
-
-.b-tabs .tab-content {
-  padding: 0;
-}
-</style>
+<style lang="scss" scoped>
+  .bar-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FFF;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    ul, li, button{
+      width: 100%;
+    }
+    ul{
+      li{
+        a{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: none;
+          background-color: #FFF;
+          font-size: .8rem;
+          font-weight: bold;
+          color: #A0A3BD;
+          &.router-link-exact-active{
+            color: #196972;
+          }
+          &:focus{
+            background-color: #FFF;
+          }
+        }
+      }
+        
+    }
+  }
+</style>>

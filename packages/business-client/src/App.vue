@@ -30,7 +30,7 @@ export default {
 }
 
 .wrapper {
-  background: #ffffff;
+  background: linear-gradient(180deg, #275A64 0%, rgba(0, 178, 159, 0.85) 100%);
   min-width: 500px;
   max-width: 500px;
   min-height: 100%;
