@@ -70,4 +70,8 @@ export default {
   color: white;    
 }
 
+.menu-list {
+  margin-top: 30px;
+}
+
 </style>

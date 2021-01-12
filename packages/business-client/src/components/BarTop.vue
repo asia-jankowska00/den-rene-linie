@@ -103,4 +103,8 @@ export default {
   max-height: 100% !important;
   max-width: 100% !important;
 }
+
+/deep/ .sidebar-content .menu-list a {
+  color: white
+}
 </style>

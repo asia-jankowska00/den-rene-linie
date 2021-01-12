@@ -129,6 +129,8 @@ export default {
 .textbox-container {
   max-height: 10vh;
   width: 100%;
+  position: fixed;
+  bottom: 10px;
 }
 
 .chat-input {
