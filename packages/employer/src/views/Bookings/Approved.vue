@@ -11,27 +11,39 @@
         ></b-datepicker>
       </div>
       <div class="column">
-        <b-table v-if="employees" :data="employees">
-          <b-table-column v-slot="props" field="avatar" label="Active" width="100">
-            <b-image :src="props.row.avatar"></b-image>
+        <b-table v-if="activeEmployees && activeEmployees.length > 0" :data="activeEmployees">
+          <b-table-column v-slot="props" field="avatar" label="Active" width="80">
+            <b-image
+              rounded
+              :src="props.row.avatar ? props.row.avatar[0].url : placeholderAvatar"
+            ></b-image>
           </b-table-column>
 
           <b-table-column v-slot="props">
             <span>{{ formatName(props.row) }}</span>
           </b-table-column>
-
-          <b-table-column>Inactive</b-table-column>
         </b-table>
-        <b-table v-if="employees" :data="employees">
-          <b-table-column v-slot="props" label="Inactive" width="100">
+
+        <b-table v-else :data="noActiveEmployees">
+          <b-table-column v-slot="props" label="Active">
+            <p>{{ props.row }}</p>
+          </b-table-column>
+        </b-table>
+
+        <b-table v-if="inactiveEmployees && inactiveEmployees.length > 0" :data="inactiveEmployees">
+          <b-table-column v-slot="props" label="Inactive" width="80">
             <b-image :src="props.row.avatar"></b-image>
           </b-table-column>
 
           <b-table-column v-slot="props">
             <span>{{ formatName(props.row) }}</span>
           </b-table-column>
+        </b-table>
 
-          <b-table-column>Inactive</b-table-column>
+        <b-table v-else :data="noInactiveEmployees">
+          <b-table-column v-slot="props" label="Inactive">
+            <p>{{ props.row }}</p>
+          </b-table-column>
         </b-table>
       </div>
     </div>
@@ -125,14 +137,18 @@ export default {
     return {
       selectedDate: new Date(),
       isAssignEmployeeModalActive: false,
-      selectedEmployees: []
+      selectedEmployees: [],
+      noActiveEmployees: ['No active employees'],
+      noInactiveEmployees: ['No inactive employees']
     }
   },
   computed: {
     ...mapGetters('bookings', ['bookingsApproved']),
     ...mapGetters('bookings', ['bookingsApprovedCalendarEvents']),
     ...mapGetters('bookings', ['bookingsForDate']),
-    ...mapGetters('employees', ['employees'])
+    ...mapGetters('employees', ['employees']),
+    ...mapGetters('employees', ['activeEmployees']),
+    ...mapGetters('employees', ['inactiveEmployees'])
   },
   watch: {
     selectedDate(newDate) {
@@ -180,6 +196,10 @@ export default {
 /deep/ .datepicker .datepicker-table .datepicker-body .datepicker-cell,
 .datepicker .datepicker-table .datepicker-body.datepicker-body.has-events .datepicker-cell {
   padding: 2vw 3.5vw 2vw 3.5vw;
+
+  //   @media screen and (min-width: 1920px) {
+  //     padding: 1.7vw 2.7vw 1.7vw 2.7vw;
+  // }
 }
 
 /deep/

@@ -18,6 +18,14 @@ Vue.prototype.dayjs = dayjs
 Vue.config.productionTip = false
 
 Vue.mixin({
+  data() {
+    return {
+      placeholderAvatar:
+        'https://res.cloudinary.com/den-rene-linie/image/upload/v1610229276/Portrait_Placeholder_238e4f79b7.png',
+      drlAvatar:
+        'https://res.cloudinary.com/den-rene-linie/image/upload/v1610297871/Logo_b7e21cd3f1.png'
+    }
+  },
   methods: {
     formatName(user) {
       return `${user.firstName} ${user.lastName}`

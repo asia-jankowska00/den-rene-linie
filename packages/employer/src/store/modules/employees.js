@@ -1,11 +1,16 @@
 import api from '../../api/api'
 
 const state = () => ({
-  employees: null
+  employees: [],
+  activeEmployees: [],
+  inactiveEmployees: []
 })
 
+/* eslint-disable no-unused-vars */
 const getters = {
-  employees: (store) => store.employees
+  employees: (store) => store.employees,
+  activeEmployees: (store) => store.activeEmployees,
+  inactiveEmployees: (store) => store.inactiveEmployees
 }
 
 const actions = {
@@ -15,6 +20,8 @@ const actions = {
         try {
           const { data } = await api.employees.getEmployees()
           commit('updateEmployees', data)
+          commit('updateActiveEmployees', data)
+          commit('updateInactiveEmployees', data)
           resolve()
         } catch (err) {
           reject(err)
@@ -41,6 +48,27 @@ const actions = {
 const mutations = {
   updateEmployees(state, payload) {
     state.employees = payload
+  },
+  updateActiveEmployees(state, employees) {
+    let active
+    if (employees.length > 0) {
+      active = employees.filter((employee) =>   employee.bookings       
+    )
+    } else {
+      active = employees.bookings ? employees : null
+    }
+    console.log(active)
+    state.activeEmployees = active
+  },
+  updateInactiveEmployees(state, employees) {
+    let inactive
+    if (employees.length > 0) {
+      inactive = employees.filter((employee) => !employee.bookings)
+    } else {
+      inactive = !employees.bookings ? employees : null
+    }
+    console.log(inactive)
+    state.inactiveEmployees = inactive
   }
 }
 
