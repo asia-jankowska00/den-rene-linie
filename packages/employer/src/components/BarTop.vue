@@ -34,7 +34,9 @@
                 <b-button class="p-5" icon-left="user-plus">
                   Create&nbsp;admin&nbsp;account
                 </b-button>
-                <b-button class="p-5" icon-left="sign-out-alt">Log&nbsp;out</b-button>
+                <b-button class="p-5" icon-left="sign-out-alt" @click="logoutUser">
+                  Log&nbsp;out
+                </b-button>
               </div>
             </div>
           </b-dropdown-item>
@@ -45,16 +47,39 @@
 </template>
 
 <script>
-export default { name: 'BarTop' }
+import { mapActions } from 'vuex'
+
+export default {
+  name: 'BarTop',
+  methods: {
+    ...mapActions('user', ['logout']),
+    logoutUser: function () {
+      this.logout().then(() => {
+        this.$router.push('/')
+      })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
 .navbar {
-  background: linear-gradient(90deg, #275a64, #5cc3b4) !important;
+  background: linear-gradient(90deg, #275a64 0%, rgba(0, 178, 159, 0.85) 100%) !important;
 }
 
 .navbar .navbar-item,
 .navbar-link {
   color: white !important;
+}
+
+a.navbar-item:focus,
+a.navbar-item:focus-within,
+a.navbar-item:hover,
+a.navbar-item.is-active,
+.navbar-link:focus,
+.navbar-link:focus-within,
+.navbar-link:hover,
+.navbar-link.is-active {
+  background: transparent;
 }
 </style>

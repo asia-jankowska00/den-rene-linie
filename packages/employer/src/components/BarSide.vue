@@ -125,7 +125,7 @@ export default {
   box-shadow: none !important;
   height: 100%;
   width: 100% !important;
-  background: linear-gradient(#275a64, #5cc3b4) !important;
+  background:  linear-gradient(180deg, #275A64 0%, rgba(0, 178, 159, 0.85) 100%) !important;
 }
 .b-sidebar .menu-list a {
   color: white;
