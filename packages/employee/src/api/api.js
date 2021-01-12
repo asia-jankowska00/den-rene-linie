@@ -88,5 +88,8 @@ export default {
   },
   tasks: {
     updateTask: (taskId, data) => axios.put(`${baseUrl}/tasks/${taskId}`, data, config()),
-  }
+  },
+  notifications: {
+    getUserNotifications: (userId) => axios.get(`${baseUrl}/notifications?user._id=${userId}`, config())
+  },
 }
