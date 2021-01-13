@@ -15,7 +15,7 @@
             <div>
               <b-icon size="is-medium" pack="fas" icon="broom" />
             </div>
-            Services
+            Guides
           </router-link >
         </li>
         <li>
