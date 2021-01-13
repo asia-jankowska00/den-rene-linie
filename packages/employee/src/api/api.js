@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-const baseUrl = 'http://localhost:1337'
+const baseUrl = process.env.VUE_APP_API_URL || 'http://localhost:1337'
 
 axios.defaults.headers.common['Content-Type'] = 'application/json-patch+json'
 
