@@ -138,7 +138,6 @@ export default {
       this.isBookingModalActive = !this.isBookingModalActive
     },
     updateTaskInBooking(task) {
-      console.log(task)
       this.updateTask({ taskId: task._id, data: { isCompleted: !task.isCompleted } })
     }
   }

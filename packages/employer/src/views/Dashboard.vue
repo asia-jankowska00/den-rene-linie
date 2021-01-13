@@ -32,8 +32,7 @@ export default {
           Snackbar.open({ position: 'is-top', message: 'Your account type doesnt have access' })
         }
       })
-      .catch((e) => {
-        console.log(e)
+      .catch(() => {
         // if no token or no user, redirect to login
         if (!this.user) {
           this.$router.push('/')
