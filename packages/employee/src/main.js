@@ -44,7 +44,7 @@ Vue.mixin({
       return dayjs(date).format('DD/MM/YYYY, hh:mm')
     },
     formatDuration(date) {
-      return dayjs(date).tz('Etc/GMT+0').format('HH:mm:ss')
+      return dayjs(date).tz('Etc/GMT+0').format('HH:mm')
     },
     formatElapsedTime(date) {
       return dayjs(date).tz('Etc/GMT+0').format('HH:mm:ss')

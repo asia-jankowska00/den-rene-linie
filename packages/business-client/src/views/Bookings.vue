@@ -266,7 +266,8 @@ export default {
   background-color: #FCFCFC;
   border-radius: 30px 30px 0px 0px;
   backdrop-filter: blur(30px);
-  padding:0 1.6rem;
+  padding: 0 1.6rem 4rem 1.6rem;
+  min-height: 8rem;
   .hero{
     color: #6E7191;
     font-weight: bold;

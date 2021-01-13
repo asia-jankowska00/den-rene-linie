@@ -16,7 +16,6 @@ export default {
 <style lang="scss">
 @import './custom';
 #app {
-  font-size: 16px;
   background: #f2f2f2;
   min-height: 100vh;
   display: flex;
@@ -30,7 +29,7 @@ export default {
 }
 
 .wrapper {
-  background: #ffffff;
+  background: linear-gradient(180deg, #275A64 0%, rgba(0, 178, 159, 0.85) 100%);
   min-width: 500px;
   max-width: 500px;
   min-height: 100%;

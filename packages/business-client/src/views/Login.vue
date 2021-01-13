@@ -17,9 +17,6 @@
           <a>Forgot your password?</a>
         </div>
       </div>
-    
-
-    
   </div>
 </template>
 

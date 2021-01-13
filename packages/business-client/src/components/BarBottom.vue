@@ -68,4 +68,4 @@ export default { name: 'BarBottom' }
         
     }
   }
-</style>>
+</style>

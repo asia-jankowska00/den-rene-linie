@@ -1,22 +1,21 @@
 <template>
   <div>
-    <Tabs />
+    <h2>Schedule</h2>
+    <div>
     <b-datepicker
       v-model="selectedDate"
-      class="is-overlay is-fullwidth"
       inline
       :events="bookingsCalendarEvents"
-      indicators="bars"
+      indicators="dots"
     ></b-datepicker>
 
-    <div
-      class="content p-2 hero is-fullwidth is-primary is-flex-direction-row is-justify-content-space-between"
-    >
-      <span>{{ nameOfDay }} | {{ dateMonth }}</span>
-      <span>{{ year }}</span>
-    </div>
+    <div class="bookings-container is-fullwidth">
+      <Tabs />
+      <div class="content hero is-fullwidth">
+        <span>{{ dateMonth }} {{ year }}</span>
+      </div>
 
-    <div
+      <div
       v-for="booking in bookingsForDate"
       :key="booking._id"
       class="card"
@@ -24,23 +23,27 @@
     >
       <div class="card-content">
         <div class="media">
-          <div class="media-left"></div>
           <div class="media-content">
             <p class="title is-5">
               {{ formatName(booking.client) }}
             </p>
-            <p class="subtitle is-6">{{ booking.service.name }}</p>
           </div>
         </div>
 
         <div class="content">
-          <br />
-          <time datetime="2016-1-1">{{ formatDateTime(booking.startDate) }}</time>
-          <br />
-          <time datetime="2016-1-1">{{ formatDateTime(booking.endDate) }}</time>
+          <p class="subtitle is-6">{{ booking.service.name }}</p>
+          <p class="is-6" v-if="booking.address">{{booking.address}}</p>
+          <p class="is-6" v-else>No address given.</p>
+          <b><time datetime="2016-1-1">{{ formatDuration(booking.startDate) }}</time> - <time datetime="2016-1-1">{{ formatDuration(booking.endDate) }}</time></b>
+          <div class="actions is-flex is-flex-direction-row is-justify-content-space-between is-align-items-center">
+            <hr>
+            <b-icon pack="fas" icon="arrow-right"></b-icon>
+          </div>
         </div>
       </div>
     </div>
+    </div>
+
     <b-modal
       v-if="selectedBooking"
       v-model="isBookingModalActive"
@@ -75,6 +78,7 @@
         </BookingModal>
       </template>
     </b-modal>
+    </div>
   </div>
 </template>
 
@@ -91,8 +95,7 @@ export default {
   data() {
     return {
       selectedDate: new Date(),
-      nameOfDay: dayjs(this.selectedDate).format('dddd'),
-      dateMonth: dayjs(this.selectedDate).format('D MMMM'),
+      dateMonth: dayjs(this.selectedDate).format('D MMM'),
       year: dayjs(this.selectedDate).format('YYYY'),
       isBookingModalActive: false
     }
@@ -108,8 +111,7 @@ export default {
     selectedDate(newDate) {
       const endDate = dayjs(newDate).add(1, 'day').toDate()
       this.getBookingsForDate({ userId: this.user._id, dayStart: newDate, dayEnd: endDate })
-      this.nameOfDay = dayjs(this.selectedDate).format('dddd')
-      this.dateMonth = dayjs(this.selectedDate).format('D MMMM')
+      this.dateMonth = dayjs(this.selectedDate).format('D MMM')
       this.year = dayjs(this.selectedDate).format('YYYY')
     }
   },
@@ -144,9 +146,79 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ .datepicker.control {
-  width: 100%;
+/deep/ .datepicker {
+  .dropdown {
+    width: 100%;
+    .dropdown-menu {
+      .dropdown-content {
+        background-color: transparent;
+
+        .dropdown-item {
+          .datepicker-header {
+            border: none;
+            padding: 0;
+            margin: 0;
+            .pagination {
+              flex-wrap: nowrap;
+              :nth-child(1) {
+                order: 1;
+              }
+              :nth-child(2) {
+                order: 3;
+              }
+              :nth-child(3) {
+                order: 2;
+              }
+              /deep/ .pagination-previous,
+              .pagination-next,
+              .pagination-link {
+                border-color: transparent;
+                color: white;
+                font-size: 1.6rem;
+                margin: 0;
+                padding: 0;
+                height: 64px;
+                width: 64px;
+
+                .has-text-primary {
+                  color: white !important;
+                }
+
+                /deep/ .pagination-list {
+                  .select select {
+                    border-color: transparent;
+                    background-color: transparent;
+                    color: white;
+                    &::after {
+                      display: none;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .datepicker-content {
+            /deep/ .datepicker-header {
+              .datepicker-cell {
+                color: #d9dbe9;
+              }
+            }
+            .datepicker-body {
+              .datepicker-cell {
+                font-weight: bold;
+                color: white;
+              }
+              .is-unselectable {
+                color: #d9dbe9;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
+
 /deep/ .dropdown.dropdown-menu-animation.is-inline.is-active {
   display: inline-block !important;
   max-width: 100%;
@@ -174,14 +246,50 @@ export default {
   padding: 0.2rem;
 }
 
-.datepicker {
-  text-align: center;
-}
-div.hero {
-  position: sticky;
-  top: 0;
-  left: 0;
-  margin-bottom: 0;
+.bookings-container{
+  margin: 0 -1.5rem;
+  background-color: #FCFCFC;
+  border-radius: 30px 30px 0px 0px;
+  backdrop-filter: blur(30px);
+  padding: 0 1.6rem 4rem 1.6rem;
+  min-height: 8rem;
+  .hero{
+    color: #6E7191;
+    font-weight: bold;
+    padding: 0rem 0 .8rem 0;
+    margin-bottom: 0;
+  }
+  .card{
+    background-color: white;
+    border: 1px solid rgba(220, 220, 220, 0.5);
+    box-sizing: border-box;
+    box-shadow: 0px 1px 5px rgba(57, 57, 57, 0.1);
+    border-radius: 30px;
+    width: 100%; //64% if timeline on-side
+    margin: 0 0 0 auto;
+
+    .media{
+      margin-bottom: .8rem;
+    }
+    .content{
+      p{
+        margin-bottom: 0;
+        &:nth-child(1){
+          color: #A0A3BD;
+        }
+        &:nth-child(2){
+          margin-bottom: .8rem;
+        }
+      }
+      .actions{
+        hr{
+          width: 72%;
+          margin: .8rem 0;
+        }
+      }
+      
+    }
+  }
 }
 
 .task {

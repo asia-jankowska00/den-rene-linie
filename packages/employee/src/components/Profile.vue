@@ -1,5 +1,5 @@
 <template>
-  <div class="profile is-flex is-flex-direction-column p-5">
+  <div class="profile p-5">
     <div class="media">
       <div class="image media-left">
         <img
@@ -16,11 +16,30 @@
         </b-button>
       </div>
     </div>
-    <div class="settings is-flex is-flex-direction-column">
-      <b-button class="p-5" icon-left="bell">Notification&nbsp;settings</b-button>
-      <b-button class="p-5" icon-left="envelope">Change&nbsp;email</b-button>
-      <b-button class="p-5" icon-left="sign-out-alt" @click="logoutUser">Log&nbsp;out</b-button>
-    </div>
+
+    <b-menu-list>
+
+      <b-menu-item
+        class="btn"
+        icon="bell"
+        label="Notification settings"
+        ></b-menu-item>
+
+      <b-menu-item
+        class="btn"
+        icon="envelope"
+        label="Change email"
+        ></b-menu-item>
+
+      <b-menu-item
+        class="btn"
+        @click="logoutUser"
+        icon="sign-out-alt"
+        label="Log out"
+        ></b-menu-item>
+
+    </b-menu-list>
+
   </div>
 </template>
 
@@ -42,3 +61,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.profile{
+  background: linear-gradient(180deg, #275A64 0%, rgba(0, 178, 159, 0.85) 100%);
+  min-height: 100%;
+  max-height: 100%;
+  color: white;    
+}
+
+.menu-list {
+  margin-top: 30px;
+}
+
+</style>

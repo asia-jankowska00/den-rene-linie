@@ -50,4 +50,9 @@ export default {
   height: 100%;
   flex: 1 !important;
 }
+
+.content h2, h2{
+  text-align: center;
+  color: #FCFCFC;
+}
 </style>
