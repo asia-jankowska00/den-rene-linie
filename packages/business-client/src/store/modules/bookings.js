@@ -17,11 +17,11 @@ const getters = {
 }
 
 const actions = {
-  getBookingsForDate({ commit }, { dayStart, dayEnd }) {
+  getBookingsForDate({ commit }, { userId, dayStart, dayEnd }) {
     return new Promise((resolve, reject) => {
       ;(async () => {
         try {
-          const { data } = await api.bookings.getBookingsForDate(dayStart, dayEnd)
+          const { data } = await api.bookings.getBookingsForDate(userId, dayStart, dayEnd)
           commit('updateBookingsForDate', data)
           resolve()
         } catch (err) {

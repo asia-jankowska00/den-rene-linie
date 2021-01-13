@@ -129,7 +129,7 @@ export default {
   watch: {
     selectedDate(newDate) {
       const endDate = dayjs(newDate).add(1, 'day').toDate()
-      this.getBookingsForDate({ dayStart: newDate, dayEnd: endDate })
+      this.getBookingsForDate({ userId: this.user._id, dayStart: newDate, dayEnd: endDate })
       this.dateMonth = dayjs(this.selectedDate).format('D MMM')
       this.year = dayjs(this.selectedDate).format('YYYY')
     }
@@ -137,6 +137,7 @@ export default {
   mounted() {
     this.getBookingsByUser(this.user._id)
     this.getBookingsForDate({
+      userId: this.user._id,
       dayStart: new Date(),
       dayEnd: dayjs(new Date()).add(1, 'day').toDate()
     })
