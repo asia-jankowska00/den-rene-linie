@@ -22,6 +22,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import { SnackbarProgrammatic as Snackbar } from 'buefy'
 
 export default {
   name: 'Login',
@@ -59,8 +60,13 @@ export default {
           this.$router.push('/dashboard/bookings')
         })
         .catch((e) => {
-          console.log(e)
+          Snackbar.open({
+          position: 'is-top',
+          message: e.response.data.message
+            ? e.response.data.message[0].messages[0].message
+            : 'Password or username incorrect'
         })
+      })
     }
   }
 }
