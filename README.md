@@ -2,14 +2,14 @@
 ## MMD3 Exam Project @ [Multimedia Design, UCN](https://www.ucn.dk/english/programmes-and-courses/multimedia-design).
 
 ### How to run
-1. `cd` into packages
-2. `cd` into one of the client packages (business-client, employee, employer)
-3. run `npm install` to install dependencies in that package
-4. run `npm run serve` to start the client
+1. run `npm install` in the root directory
+2. `cd` into server
+3. run `npm install` to install server dependencies
+4. run `npm run develop`
 5. In another terminal, `cd` into packages
-6. `cd` into server
-7. run `npm install` to install server dependencies
-7. run `npm run develop`
+6. `cd` into one of the client packages (business-client, employee, employer)
+7. run `npm install` to install dependencies in that package
+8. run `npm run serve` to start the client
 
 OR
 
@@ -21,11 +21,15 @@ OR
 6. Use `npm run start-server` to start the server
 
 Note: the clients will not work properly if the server is not running
+Note2: Vue doesn't seem to like environment variables, so it might throw an error "'process' is not defined". Restart the Vue live server to fix this (multiple restarts might be needed).
 
-### Technologies
+### Technologies & Tools used
 * Vue & Vuex
 * Bulma & Buefy
 * Strapi
+* Dayjs
+* Capacitor
+* Axios
 
 ### Team
 [Joanna Jankowska ](https://github.com/asia-jankowska00)  
