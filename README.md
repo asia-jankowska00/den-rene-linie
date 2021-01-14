@@ -3,7 +3,7 @@
 
 ### How to run
 1. run `npm install` in the root directory
-2. `cd` into server
+2. `cd` into packages/server
 3. run `npm install` to install server dependencies
 4. run `npm run develop`
 5. In another terminal, `cd` into packages
@@ -14,14 +14,16 @@
 OR
 
 1. Install lerna globally `npm i lerna -g`
-2. run `lerna boostrap` to install dependencies across all packages
-3. Use `npm run start-bcl` to start the business-client
-4. Use `npm run start-eme` to start the employee
-5. Use `npm run start-emr` to start the employer
-6. Use `npm run start-server` to start the server
+2. run `npm install` in the root directory
+3. run `lerna boostrap` to install dependencies across all packages
+4. Use `npm run start-server` to start the server (required)
+5. Use `npm run start-bcl` to start the business-client
+6. Use `npm run start-eme` to start the employee
+7. Use `npm run start-emr` to start the employer
+
 
 Note: the clients will not work properly if the server is not running
-Note2: Vue doesn't seem to like environment variables, so it might throw an error "'process' is not defined". Restart the Vue live server to fix this (multiple restarts might be needed).
+Note2: Vue doesn't seem to like environment variables, so it might throw an error "'process' is not defined". Restart the Vue live server to fix this (multiple restarts might be needed). If that doesn't work, restart your terminal.
 
 ### Technologies & Tools used
 * Vue & Vuex
