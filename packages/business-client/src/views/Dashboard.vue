@@ -41,6 +41,12 @@ export default {
   },
   methods: {
     ...mapActions('user', ['getProfile'])
+  },
+  sockets: {
+    connect() {
+      this.$socket.emit('afterConnected', this.user)
+      console.log('socket connected')
+    }
   }
 }
 </script>
@@ -51,8 +57,9 @@ export default {
   flex: 1 !important;
 }
 
-.content h2, h2{
+.content h2,
+h2 {
   text-align: center;
-  color: #FCFCFC;
+  color: #fcfcfc;
 }
 </style>

@@ -42,6 +42,12 @@ export default {
   },
   methods: {
     ...mapActions('user', ['getProfile'])
+  },
+  sockets: {
+    connect() {
+      this.$socket.emit('afterConnected', this.user)
+      console.log('socket connected')
+    }
   }
 }
 </script>

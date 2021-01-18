@@ -11,21 +11,24 @@
  */
 
 module.exports = () => {
-  process.nextTick(() =>{
-  const io = require('socket.io')(strapi.server, {
-    cors: {
-      origin: 'http://localhost:8080',
-      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-      credentials: true,
-      transports: ['websocket', 'polling'],
-    }
-  })
+  process.nextTick(() => {
+    const io = require('socket.io')(strapi.server, {
+      cors: {
+        origin: ['http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082'],
+        methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+        credentials: true,
+        transports: ['websocket', 'polling']
+      }
+    })
 
-  io.on('connection', (socket) => {
-    console.log('client connected:')
-    io.sockets.sockets.forEach(socket => console.log(socket.client.id))
-  })
+    io.on('connection', (socket) => {
+      console.log('client connected:')
+      io.sockets.sockets.forEach((socket) => console.log(socket.client.id))
+      socket.on('afterConnected', (user) => {
+        socket.join(`${user._id}`)
+      })
+    })
 
-  strapi.io = io
-})
+    strapi.io = io
+  })
 }

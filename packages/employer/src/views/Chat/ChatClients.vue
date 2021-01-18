@@ -89,7 +89,9 @@ export default {
           receiver: this.currentUser ? this.currentUser._id : '',
           text: this.newMessage.text
         }
-        this.postMessage(this.newMessage).then(() => this.scrollToEnd())
+        this.postMessage(this.newMessage).then(() => {
+          this.scrollToEnd()
+        })
       } else {
         Snackbar.open({ position: 'is-top', message: 'Failed to send' })
       }

@@ -51,11 +51,6 @@ Vue.mixin({
       return dayjs(date).format('HH:mm')
     }
   },
-  sockets: {
-    connect() {
-      console.log('socket connected')
-    }
-  }
 })
 
 new Vue({

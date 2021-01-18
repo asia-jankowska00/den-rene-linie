@@ -65,6 +65,10 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import { SnackbarProgrammatic as Snackbar } from 'buefy'
+import { Plugins } from '@capacitor/core';
+const { LocalNotifications } = Plugins;
+
+
 
 const employerId = '5feb3447214c2f2d14529e1b'
 
@@ -115,6 +119,26 @@ export default {
     scrollToEnd() {
       const container = this.$el.querySelector('.messages-container')
       if (container) container.scrollTop = container.scrollHeight
+    }
+  },
+  sockets: {
+    async createdMessage() {
+      await this.getUserMessages(this.user._id)
+      this.scrollToEnd()
+      await LocalNotifications.schedule({
+      notifications: [
+        {
+          title: "Title",
+          body: "Body",
+          id: 1,
+          schedule: { at: new Date() },
+          sound: null,
+          attachments: null,
+          actionTypeId: "",
+          extra: null
+        }
+      ]
+    });
     }
   }
 }
