@@ -14,7 +14,7 @@ module.exports = () => {
   process.nextTick(() => {
     const io = require('socket.io')(strapi.server, {
       cors: {
-        origin: ['http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082'],
+        origin: ['http://localhost', 'http://localhost:8080', 'http://localhost:8081', 'http://localhost:8082'],
         methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
         credentials: true,
         transports: ['websocket', 'polling']
