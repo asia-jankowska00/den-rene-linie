@@ -7,6 +7,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import dayjs from 'dayjs'
+import VueSocketIO from 'vue-socket.io'
+import SocketIO from 'socket.io-client'
 
 library.add(fas)
 
@@ -16,6 +18,17 @@ Vue.component('vue-fontawesome', FontAwesomeIcon)
 Vue.prototype.dayjs = dayjs
 
 Vue.config.productionTip = false
+
+Vue.use(
+  new VueSocketIO({
+    connection: SocketIO('http://localhost:1337'),
+    vuex: {
+      store,
+      actionPrefix: 'SOCKET_',
+      mutationPrefix: 'SOCKET_'
+    }
+  })
+)
 
 Vue.mixin({
   data() {
@@ -38,6 +51,11 @@ Vue.mixin({
     },
     formatDuration(date) {
       return dayjs(date).format('hh:mm')
+    }
+  },
+  sockets: {
+    connect() {
+      console.log('socket connected')
     }
   }
 })
